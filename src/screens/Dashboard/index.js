@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
-import { DashboardWrapper, PaperDashboard, ButtonDashboard,TypographyDashboard } from './style';
+import { DashboardWrapper, PaperDashboard, ButtonDashboard,TypographyDashboard, CustomStarsIcon, CustomPersonIcon } from './style';
 
 class Dashboard extends React.Component {
 
@@ -10,38 +10,7 @@ class Dashboard extends React.Component {
         return (
             <DashboardWrapper>
                 <PaperDashboard elevation={3}>
-                <TypographyDashboard variant="h5">Painel Admin</TypographyDashboard>
-                    <ButtonDashboard
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                    >
-                        Cadastrar
-                    </ButtonDashboard>
-                    <ButtonDashboard
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                    >
-                        Cadastrar
-                    </ButtonDashboard>
-                    <ButtonDashboard
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                    >
-                        Cadastrar
-                    </ButtonDashboard>
-                    <ButtonDashboard
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                    >
-                        Cadastrar
-                    </ButtonDashboard>
-                </PaperDashboard>
-                
-                <PaperDashboard elevation={3}>
+                    <CustomStarsIcon />
                     <TypographyDashboard variant="h5">Painel Artistas</TypographyDashboard>
                     <ButtonDashboard
                         variant="contained"
@@ -74,6 +43,7 @@ class Dashboard extends React.Component {
                 </PaperDashboard>
                 
                 <PaperDashboard elevation={3}>
+                <CustomPersonIcon />
                 <TypographyDashboard variant="h5">Painel Spotenu FREE</TypographyDashboard>
                     <ButtonDashboard
                         variant="contained"

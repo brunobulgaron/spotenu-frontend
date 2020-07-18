@@ -97,8 +97,8 @@ export const ButtonHome = styled(Button) `
     color: #fff;
     font-weight: bold;
     width: 90%;
+    transition: all .3s ease-in-out;
     :hover{
-        transition: all .3s ease-in-out;
         transform: scale(1.03);
     }
 `

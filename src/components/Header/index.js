@@ -18,7 +18,9 @@ class Header extends React.Component {
                         {/* <AccountCircleIcon /> */}
                         Entrar
                     </ButtonHeader>
-                    <ButtonHeader>
+                    <ButtonHeader
+                        onClick={this.props.goToAdminPanel}
+                    >
                         {/* <SettingsIcon /> */}
                         Painel
                     </ButtonHeader>
@@ -31,7 +33,8 @@ class Header extends React.Component {
 const mapDispatchToProps = dispatch =>{
     return{
       goToLoginPage: () => dispatch(push(routes.login)),
-      goToHome: () => dispatch(push(routes.root))
+      goToHome: () => dispatch(push(routes.root)),
+      goToAdminPanel: () => dispatch(push(routes.adminPanel))
     }
   }
   

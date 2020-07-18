@@ -36,18 +36,6 @@ export const TypographySignUp = styled(Typography) `
     margin-bottom: 30px;    
 `
 
-export const TypographySignUpH6 = styled(Typography) `
-    text-align: center;
-    margin-bottom: 30px;
-    color: #1db954;
-    border: 1px solid #1db954;
-    :hover{
-        cursor: pointer;
-        background-color: #1db954;
-        color: white;        
-    }
-`
-
 export const TypographyAlreadyHaveAccount = styled(Typography) `
     text-align: center;
     margin-bottom: 30px;

@@ -102,7 +102,7 @@ class Home extends React.Component {
 const mapDispatchToProps = dispatch =>{
     return{
       goToSignUpPage: () => dispatch(push(routes.signUpUserFree)),
-      goToSignUpBandPage: () => dispatch(push(routes.signUpUserBand))
+      goToSignUpBandPage: () => dispatch(push(routes.signUpUserBand))      
     }
   }
   

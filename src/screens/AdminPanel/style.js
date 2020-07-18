@@ -6,33 +6,33 @@ import BuildIcon from '@material-ui/icons/Build';
 import StarsIcon from '@material-ui/icons/Stars';
 import PersonIcon from '@material-ui/icons/Person';
 
-export const DashboardWrapper = styled.div `
-    /* height: 100%; */
-    /* width: 100%; */
+export const AdminPanelWrapper = styled.div `
+    height: 100%;
+    width: 100%;
     display: grid;
-    grid-template-columns: 70% 30%;
-    /* gap: 20px; */
+    grid-template-columns: auto auto auto;
+    gap: 30px;
     background-color: #ededed;
 `
 
-export const PaperDashboard = styled(Paper) `
+export const PaperAdminPanel = styled(Paper) `
     display: flex;
     flex-direction: column;
     justify-items: center;
-    width: 100%;
-    height: 75vh;
+    width: 30vw;
+    height: 80vh;
     margin: 0 auto;
     margin-top: 50px;
     background-color: #ededed;
 `
 
-export const TypographyDashboard = styled(Typography) `
+export const TypographyAdminPanel = styled(Typography) `
     text-align: center;
     margin-bottom: 30px;
     margin-top: 30px;
 `
 
-export const ButtonDashboard = styled(Button) `
+export const ButtonAdminPanel = styled(Button) `
     color: #fff;
     font-weight: bold;
     width: 50%;

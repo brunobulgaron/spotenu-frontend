@@ -20,8 +20,7 @@ class SignUpUserFree extends React.Component {
             <SignUpUserFreeWrapper>
                 <PaperSignUp elevation={3}>
                     <FormSignUp>
-                        <TypographySignUp variant="h4">Nova Conta</TypographySignUp>
-                        <TypographySignUpH6 variant="h6">Spotenu Free</TypographySignUpH6>
+                        <TypographySignUp variant="h4">Nova Conta</TypographySignUp>                        
                         <TextField
                             label="Nome"
                             variant="outlined"

@@ -7,6 +7,11 @@ import SignUpUserFree from "../SignUpUserFree";
 import SignUpUserBand from "../SignUpUserBand";
 import SignUpUserAdmin from "../SignUpUserAdmin";
 import Dashboard from "../Dashboard";
+import DashboardBand from "../DashboardBand";
+import AdminPanel from '../AdminPanel';
+import ManageAlbums from "../ManageAlbums";
+import ManageSongs from "../ManageSongs";
+import ManageProfile from "../ManageProfile";
 
 
 export const routes = {
@@ -15,7 +20,12 @@ export const routes = {
   signUpUserFree: "/user/signup",
   signUpUserBand: "/user/signupBand",
   signUpUserAdmin: "/user/signupAdmin",
-  dashboard: "/dashboard"
+  dashboard: "/dashboard",
+  dashboardBand: "/dashboardBand",
+  adminPanel: "/admin",
+  manageAlbums: "/albums",
+  manageSongs: "/songs",
+  manageProfile: "/profile"
 };
 
 export function Router(props) {
@@ -28,6 +38,11 @@ export function Router(props) {
           <Route exact path={routes.signUpUserBand} component={SignUpUserBand} />
           <Route exact path={routes.signUpUserAdmin} component={SignUpUserAdmin} />
           <Route exact path={routes.dashboard} component={Dashboard} />
+          <Route exact path={routes.dashboardBand} component={DashboardBand} />
+          <Route exact path={routes.adminPanel} component={AdminPanel} />
+          <Route exact path={routes.manageAlbums} component={ManageAlbums} />
+          <Route exact path={routes.manageSongs} component={ManageSongs} />
+          <Route exact path={routes.manageProfile} component={ManageProfile} />
         </Switch>
     </ConnectedRouter>
   );

@@ -33,7 +33,7 @@ export const ContentWrapper = styled.div`
 export const RouterWrapper = styled.div`
     height: 100%;
     width: 100%;
-    background-color: #f7f7f7;
+    background-color: #ededed;
     overflow-y: scroll;
     overflow: hidden;
 `
