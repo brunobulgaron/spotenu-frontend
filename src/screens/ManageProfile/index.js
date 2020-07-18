@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
-import { ManageProfileWrapper, PaperManageProfile, ButtonManageProfile,TypographyManageProfile, CustomPersonIcon, CustomSVG, CustomSVGWrapper, ButtonManageProfileVoltar, CustomHighlightOffIcon, CustomKeyboardBackspaceIcon, ButtonManageProfileExcluir } from './style';
-
+import { ManageProfileWrapper, PaperManageProfile, ButtonManageProfile,TypographyManageProfile, CustomPersonIcon, CustomSVG, CustomSVGWrapper, ButtonManageProfileVoltar, CustomHighlightOffIcon, CustomKeyboardBackspaceIcon, ButtonManageProfileExcluir, TypographyProfileInfo, CustomSpan } from './style';
 
 class ManageProfile extends React.Component {
 
@@ -13,8 +12,17 @@ class ManageProfile extends React.Component {
                 <PaperManageProfile elevation={2}>
                     <CustomPersonIcon />
                     <TypographyManageProfile variant="h4">Gerenciar Perfil</TypographyManageProfile>
+                    
+                    <TypographyProfileInfo variant="h6">
+                        <CustomSpan>Nome: </CustomSpan>nome user
+                    </TypographyProfileInfo>
+
+                    <TypographyProfileInfo variant="h6">
+                        <CustomSpan>E-mail: </CustomSpan>email user
+                    </TypographyProfileInfo>
+                    
                     <ButtonManageProfileExcluir
-                        variant="contained"                        
+                        variant="contained"
                         type="submit"
                     >
                         <CustomHighlightOffIcon />
@@ -32,7 +40,7 @@ class ManageProfile extends React.Component {
                 </PaperManageProfile>
 
                 <CustomSVGWrapper>
-                    <CustomSVG src={require('../../img/undraw_compose_music_ovo2.svg')}></CustomSVG>
+                    <CustomSVG src={require('../../img/undraw_profile_data_mk6k.svg')}></CustomSVG>
                 </CustomSVGWrapper>
             </ManageProfileWrapper>
         );

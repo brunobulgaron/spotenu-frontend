@@ -32,37 +32,7 @@ class Home extends React.Component {
 
                     <PaperHome elevation={3}>
                         <WomanCard></WomanCard>
-                    </PaperHome>
-                    
-                    <PaperHomeOuvinte elevation={3}>
-                        <TypographyHome variant="h4">Spotenu Free</TypographyHome>
-                        
-                        <TypographyItem>
-                            <CheckRoundedIcon color="primary"/>
-                            <TypographyText>Encontre suas músicas preferidas</TypographyText>
-                        </TypographyItem>
-                        
-                        <TypographyItem>
-                            <CheckRoundedIcon color="primary"/>
-                            <TypographyText>Crie Playlists colaborativas</TypographyText>
-                        </TypographyItem>
-                        
-                        <TypographyItem>
-                            <CheckRoundedIcon color="primary"/>
-                            <TypographyText>Milhares de Artistas e Álbuns</TypographyText>
-                        </TypographyItem>
-
-                        <ButtonWrapper>
-                            <ButtonHome
-                                variant="contained"
-                                color="primary"
-                                type="submit"
-                                onClick={this.props.goToSignUpPage}
-                            >Cadastre-se!
-                            </ButtonHome>
-                        </ButtonWrapper>
-
-                    </PaperHomeOuvinte>
+                    </PaperHome>                                        
 
                     <PaperHomeBanda elevation={3}>
                         <TypographyHome variant="h4">Artistas</TypographyHome>
@@ -93,6 +63,36 @@ class Home extends React.Component {
                         </ButtonWrapper>
 
                     </PaperHomeBanda>
+
+                    <PaperHomeOuvinte elevation={3}>
+                        <TypographyHome variant="h4">Spotenu Free</TypographyHome>
+                        
+                        <TypographyItem>
+                            <CheckRoundedIcon color="primary"/>
+                            <TypographyText>Encontre suas músicas preferidas</TypographyText>
+                        </TypographyItem>
+                        
+                        <TypographyItem>
+                            <CheckRoundedIcon color="primary"/>
+                            <TypographyText>Crie Playlists colaborativas</TypographyText>
+                        </TypographyItem>
+                        
+                        <TypographyItem>
+                            <CheckRoundedIcon color="primary"/>
+                            <TypographyText>Milhares de Artistas e Álbuns</TypographyText>
+                        </TypographyItem>
+
+                        <ButtonWrapper>
+                            <ButtonHome
+                                variant="contained"
+                                color="primary"
+                                type="submit"
+                                onClick={this.props.goToSignUpPage}
+                            >Cadastre-se!
+                            </ButtonHome>
+                        </ButtonWrapper>
+
+                    </PaperHomeOuvinte>
                 </SecondWrapper>
             </HomeWrapper>
         );

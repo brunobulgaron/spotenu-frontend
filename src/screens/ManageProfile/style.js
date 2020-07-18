@@ -58,7 +58,7 @@ export const ButtonManageProfileVoltar = styled(Button) `
 `
 
 export const ButtonManageProfileExcluir = styled(Button) `
-    background-color: #d90a05;
+    background-color: #d30500;
     color: white;
     font-weight: 800;
     width: 50%;
@@ -95,4 +95,14 @@ export const CustomSVG = styled.img `
         transform: scale(1.05);
         opacity: 100%;
     }
+`
+
+export const TypographyProfileInfo = styled(Typography) `
+    text-align: center;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+`
+
+export const CustomSpan = styled.span`
+    font-weight: 800;
 `

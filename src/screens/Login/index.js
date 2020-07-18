@@ -19,7 +19,7 @@ class Login extends React.Component {
             <LoginWrapper>
                 <PaperLogin elevation={3}>
                     <FormLogin>
-                        <TypographyLogin variant="h4">Entrar</TypographyLogin>                    
+                        <TypographyLogin variant="h4">Login</TypographyLogin>                    
                         <TextField
                             label="E-mail"
                             variant="outlined"
@@ -42,7 +42,7 @@ class Login extends React.Component {
                             color="primary"
                             type="submit"
                         >
-                            Cadastrar
+                            Entrar
                         </ButtonLogin>
                         <TypographyCreateNewAccount onClick={this.props.goToSignUpPage}>Não possui uma conta?</TypographyCreateNewAccount>
                     </FormLogin>

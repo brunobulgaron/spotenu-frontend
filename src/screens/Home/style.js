@@ -55,9 +55,10 @@ export const PaperHomeBanda = styled(Paper) `
     flex-direction: column;
     justify-items: center;
     width: 330px;
+    height: 88.1%;
     margin: 0 auto;
-    margin-top: 50px;
-    background-color: #ededed;    
+    margin-top: 30px;
+    background-color: #ededed;
 `
 
 export const TypographyHome = styled(Typography) `

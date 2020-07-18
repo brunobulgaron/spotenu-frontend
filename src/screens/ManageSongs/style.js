@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import AddIcon from '@material-ui/icons/Add';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import TableCell from "@material-ui/core/TableCell";
 
 export const ManageSongsWrapper = styled.div `
     /* height: 100%; */
@@ -26,7 +27,17 @@ export const PaperManageSongs = styled(Paper) `
     background-color: #ededed;
 `
 
-export const CustomSVGWrapper = styled.div `
+export const PaperListSongs = styled(Paper) `
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    width: 100%;
+    height: 60.1vh;
+    margin-top: 7.4vh;
+    background-color: #ededed;
+`
+
+export const CustomSongsWrapper = styled.div `
     display: flex;
     flex-direction: column;
     justify-items: center;
@@ -74,14 +85,6 @@ export const CustomKeyboardBackspaceIcon = styled(KeyboardBackspaceIcon) `
     margin-right: 2px;
 `
 
-export const CustomSVG = styled.img `
-    width: 100%;
-    height: 100%;
-    padding: 12%;
-    opacity: 60%;
-    transition: .4s ease-in-out;
-    :hover{
-        transform: scale(1.05);
-        opacity: 100%;
-    }
+export const CustomTableCell = styled(TableCell) `
+    font-weight: 800;
 `

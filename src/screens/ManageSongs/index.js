@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
-import { ManageSongsWrapper, PaperManageSongs, ButtonManageSongs,TypographyManageSongs, CustomMusicNoteIcon, CustomSVG, CustomSVGWrapper, ButtonManageSongsVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon } from './style';
+import { ManageSongsWrapper, PaperManageSongs, ButtonManageSongs,TypographyManageSongs, CustomMusicNoteIcon, ButtonManageSongsVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon, CustomSongsWrapper, PaperListSongs, CustomTableCell } from './style';
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 
 
 class ManageSongs extends React.Component {
@@ -17,6 +23,7 @@ class ManageSongs extends React.Component {
                         variant="contained"
                         color="primary"
                         type="submit"
+                        onClick={this.props.goToCreateSongPage}
                     >
                         <CustomAddIcon />
                         Criar Música
@@ -31,10 +38,54 @@ class ManageSongs extends React.Component {
                         Voltar
                     </ButtonManageSongsVoltar>
                 </PaperManageSongs>
-
-                <CustomSVGWrapper>
-                    <CustomSVG src={require('../../img/undraw_compose_music_ovo2.svg')}></CustomSVG>
-                </CustomSVGWrapper>
+                
+                <CustomSongsWrapper>
+                    <PaperListSongs elevation={2}>
+                    <TableContainer component={PaperListSongs}>
+                        <Table                
+                            size="small"                            
+                        >
+                            <TableHead>
+                                <TableRow>
+                                    <CustomTableCell>Nome</CustomTableCell>
+                                    <CustomTableCell align="center">Álbum</CustomTableCell>
+                                    <CustomTableCell align="center">Artista</CustomTableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell component="th" scope="row">
+                                        Nome da Música
+                                    </TableCell>
+                                    <TableCell align="center">Nome do Álbum</TableCell>
+                                    <TableCell align="center">Nome do Artista</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell component="th" scope="row">
+                                        Nome da Música
+                                    </TableCell>
+                                    <TableCell align="center">Nome do Álbum</TableCell>
+                                    <TableCell align="center">Nome do Artista</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell component="th" scope="row">
+                                        Nome da Música
+                                    </TableCell>
+                                    <TableCell align="center">Nome do Álbum</TableCell>
+                                    <TableCell align="center">Nome do Artista</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell component="th" scope="row">
+                                        Nome da Música
+                                    </TableCell>
+                                    <TableCell align="center">Nome do Álbum</TableCell>
+                                    <TableCell align="center">Nome do Artista</TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    </PaperListSongs>
+                </CustomSongsWrapper>
             </ManageSongsWrapper>
         );
     }
@@ -42,7 +93,8 @@ class ManageSongs extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
-        goToDashboardBandPage: () => dispatch(push(routes.dashboardBand))
+        goToDashboardBandPage: () => dispatch(push(routes.dashboardBand)),
+        goToCreateSongPage: () => dispatch(push(routes.createSong))
     }
   }
   

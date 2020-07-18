@@ -6,7 +6,7 @@ import AlbumIcon from '@material-ui/icons/Album';
 import AddIcon from '@material-ui/icons/Add';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
-export const ManageAlbumsWrapper = styled.div `
+export const CreateSongWrapper = styled.div `
     /* height: 100%; */
     /* width: 100%; */
     display: grid;
@@ -15,7 +15,7 @@ export const ManageAlbumsWrapper = styled.div `
     background-color: #ededed;
 `
 
-export const PaperManageAlbums = styled(Paper) `
+export const PaperCreateSong = styled(Paper) `
     display: flex;
     flex-direction: column;
     justify-items: center;
@@ -47,20 +47,20 @@ export const CustomAlbumsWrapper = styled.div `
     background-color: #ededed;
 `
 
-export const TypographyManageAlbums = styled(Typography) `
+export const TypographyCreateSong = styled(Typography) `
     text-align: center;
     margin-bottom: 30px;
     margin-top: 30px;
 `
 
-export const ButtonManageAlbums = styled(Button) `
+export const ButtonCreateSong = styled(Button) `
     color: #fff;
     font-weight: bold;
     width: 50%;
     margin: 8px auto;
 `
 
-export const ButtonManageAlbumsVoltar = styled(Button) `
+export const ButtonCreateSongVoltar = styled(Button) `
     color: #25252c;
     font-weight: 600;
     width: 50%;
@@ -94,4 +94,13 @@ export const CustomSVG = styled.img `
         transform: scale(1.05);
         opacity: 100%;
     }
+`
+
+export const FormCreateSong = styled.form `
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 50px;
+    width: 30vw;
+    margin: 0 auto;
 `

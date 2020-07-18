@@ -2,49 +2,43 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
-import { AdminPanelWrapper, PaperAdminPanel, ButtonAdminPanel,TypographyAdminPanel, CustomBuildIcon } from './style';
+import { AdminPanelWrapper, PaperAdminPanel, ButtonAdminPanel,TypographyAdminPanel, CustomBuildIcon, CustomSVG, CustomSVGWrapper } from './style';
 
 class AdminPanel extends React.Component {
 
     render() {
         return (
             <AdminPanelWrapper>
-                <PaperAdminPanel elevation={3}>
-                <CustomBuildIcon />
-                <TypographyAdminPanel variant="h5">Painel Administrador</TypographyAdminPanel>
+                <PaperAdminPanel elevation={2}>
+                    <CustomBuildIcon />
+                    <TypographyAdminPanel variant="h4">Painel Administrativo</TypographyAdminPanel>
                     <ButtonAdminPanel
                         variant="contained"
                         color="primary"
                         type="submit"
                     >
-                        Cadastrar
+                        Aprovar Bandas
                     </ButtonAdminPanel>
                     <ButtonAdminPanel
                         variant="contained"
                         color="primary"
                         type="submit"
                     >
-                        Cadastrar
+                        Gêneros Musicais
                     </ButtonAdminPanel>
                     <ButtonAdminPanel
                         variant="contained"
                         color="primary"
                         type="submit"
+                        onClick={this.props.goToSignUpUserAdminPage}
                     >
-                        Cadastrar
-                    </ButtonAdminPanel>
-                    <ButtonAdminPanel
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                    >
-                        Cadastrar
+                        Adicionar Administrador
                     </ButtonAdminPanel>
                 </PaperAdminPanel>
 
-                <PaperAdminPanel elevation={1}>
-                    <p>This is another paper!</p>
-                </PaperAdminPanel>
+                <CustomSVGWrapper>
+                    <CustomSVG src={require('../../img/undraw_dashboard_nklg.svg')}></CustomSVG>
+                </CustomSVGWrapper>
             </AdminPanelWrapper>
         );
     }
@@ -52,9 +46,7 @@ class AdminPanel extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
-    //   goToLoginPage: () => dispatch(push(routes.login)),
-    //   goToSignUpPage: () => dispatch(push(routes.signUpUserFree)),
-    //   goToHome: () => dispatch(push(routes.root))
+      goToSignUpUserAdminPage: () => dispatch(push(routes.signUpUserAdmin)),
     }
   }
   

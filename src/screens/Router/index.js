@@ -12,6 +12,8 @@ import AdminPanel from '../AdminPanel';
 import ManageAlbums from "../ManageAlbums";
 import ManageSongs from "../ManageSongs";
 import ManageProfile from "../ManageProfile";
+import CreateAlbum from "../CreateAlbum";
+import CreateSong from "../CreateSong";
 
 
 export const routes = {
@@ -25,7 +27,9 @@ export const routes = {
   adminPanel: "/admin",
   manageAlbums: "/albums",
   manageSongs: "/songs",
-  manageProfile: "/profile"
+  manageProfile: "/profile",
+  createAlbum: "/albums/create",
+  createSong: "/songs/create"
 };
 
 export function Router(props) {
@@ -43,6 +47,8 @@ export function Router(props) {
           <Route exact path={routes.manageAlbums} component={ManageAlbums} />
           <Route exact path={routes.manageSongs} component={ManageSongs} />
           <Route exact path={routes.manageProfile} component={ManageProfile} />
+          <Route exact path={routes.createAlbum} component={CreateAlbum} />
+          <Route exact path={routes.createSong} component={CreateSong} />
         </Switch>
     </ConnectedRouter>
   );
