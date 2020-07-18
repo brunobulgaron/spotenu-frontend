@@ -5,23 +5,20 @@ import { push } from "connected-react-router";
 import {
     ButtonSignUp,
     TypographySignUp,
-    TypographySignUpH6,
-    SignUpUserFreeWrapper,
+    SignUpUserBandWrapper,
     FormSignUp,
     PaperSignUp,
-    TypographyAlreadyHaveAccount,
-    CustomSpan
+    TypographyAlreadyHaveAccount
 } from "./style";
 import TextField from "@material-ui/core/TextField";
 
-class SignUpUserFree extends React.Component {
+class SignUpUserBand extends React.Component {
     render() {
         return (
-            <SignUpUserFreeWrapper>
+            <SignUpUserBandWrapper>
                 <PaperSignUp elevation={3}>
                     <FormSignUp>
-                        <TypographySignUp variant="h4">Nova Conta</TypographySignUp>
-                        <TypographySignUpH6 variant="h6">Spotenu Free</TypographySignUpH6>
+                        <TypographySignUp variant="h4">Novo Artista</TypographySignUp>
                         <TextField
                             label="Nome"
                             variant="outlined"
@@ -34,6 +31,14 @@ class SignUpUserFree extends React.Component {
                             label="Apelido"
                             variant="outlined"
                             name="nickname"
+                            type="text"
+                            pattern="[A-Za-z ãé]{5,}"
+                            required
+                        />
+                        <TextField
+                            label="Descrição"
+                            variant="outlined"
+                            name="description"
                             type="text"
                             pattern="[A-Za-z ãé]{5,}"                        
                         />
@@ -61,10 +66,10 @@ class SignUpUserFree extends React.Component {
                         >
                             Cadastrar
                         </ButtonSignUp>
-                        <TypographyAlreadyHaveAccount onClick={this.props.goToLoginPage}>Já tem uma conta? <CustomSpan>Clique aqui!</CustomSpan></TypographyAlreadyHaveAccount>
+                        <TypographyAlreadyHaveAccount onClick={this.props.goToLoginPage}>Já tem uma conta? Clique aqui!</TypographyAlreadyHaveAccount>
                     </FormSignUp>
                 </PaperSignUp>
-            </SignUpUserFreeWrapper>
+            </SignUpUserBandWrapper>
         );
     }
 }
@@ -77,4 +82,4 @@ const mapDispatchToProps = dispatch =>{
   
   
   
-  export default connect (null, mapDispatchToProps) (SignUpUserFree);
+  export default connect (null, mapDispatchToProps) (SignUpUserBand);

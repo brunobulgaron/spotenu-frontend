@@ -14,7 +14,8 @@ import {
     WomanCard,
     SecondWrapper,
     ButtonHome,
-    ButtonWrapper
+    ButtonWrapper,
+    CustomSpan
 } from "./style";
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import StarIcon from '@material-ui/icons/Star';
@@ -34,7 +35,7 @@ class Home extends React.Component {
                     </PaperHome>
                     
                     <PaperHomeOuvinte elevation={3}>
-                        <TypographyHome variant="h4">Ouvinte</TypographyHome>
+                        <TypographyHome variant="h4">Spotenu Free</TypographyHome>
                         
                         <TypographyItem>
                             <CheckRoundedIcon color="primary"/>
@@ -64,7 +65,7 @@ class Home extends React.Component {
                     </PaperHomeOuvinte>
 
                     <PaperHomeBanda elevation={3}>
-                        <TypographyHome variant="h4">Banda</TypographyHome>
+                        <TypographyHome variant="h4">Artistas</TypographyHome>
 
                         <TypographyItem>
                             <CheckRoundedIcon color="primary"/>
@@ -78,14 +79,15 @@ class Home extends React.Component {
                         
                         <TypographyItem>
                             <StarIcon color="primary"/>
-                            <TypographyText>Seja reconhecido!</TypographyText>
+                            <TypographyText>Seja <CustomSpan>reconhecido!</CustomSpan></TypographyText>
                         </TypographyItem>
 
                         <ButtonWrapper>
                             <ButtonHome
                                 variant="contained"
                                 color="primary"
-                                type="submit"                        
+                                type="submit"
+                                onClick={this.props.goToSignUpBandPage}                        
                             >Cadastre-se!
                             </ButtonHome>
                         </ButtonWrapper>
@@ -99,7 +101,8 @@ class Home extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
-      goToSignUpPage: () => dispatch(push(routes.signUpUserFree))
+      goToSignUpPage: () => dispatch(push(routes.signUpUserFree)),
+      goToSignUpBandPage: () => dispatch(push(routes.signUpUserBand))
     }
   }
   

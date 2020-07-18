@@ -63,7 +63,7 @@ export const PaperHomeBanda = styled(Paper) `
 export const TypographyHome = styled(Typography) `
     text-align: center;
     margin: 16px;
-    margin-top: 24px;
+    margin-top: 32px;
 `
 
 export const TypographyHomeTopo = styled(Typography) `
@@ -106,6 +106,10 @@ export const ButtonHome = styled(Button) `
 export const ButtonWrapper = styled.div`
     width: 100%;
     text-align: center;
-    margin-top: 65px;
+    margin-top: 55px;
     /* border: 1px solid black; */
+`
+
+export const CustomSpan = styled.span`
+    font-weight: 800;
 `

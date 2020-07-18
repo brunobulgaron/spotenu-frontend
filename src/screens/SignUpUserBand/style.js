@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
-export const SignUpUserFreeWrapper = styled.div `
+export const SignUpUserBandWrapper = styled.div `
     height: 100%;
     width: 100%;
     display: flex;
@@ -36,18 +36,6 @@ export const TypographySignUp = styled(Typography) `
     margin-bottom: 30px;    
 `
 
-export const TypographySignUpH6 = styled(Typography) `
-    text-align: center;
-    margin-bottom: 30px;
-    color: #1db954;
-    border: 1px solid #1db954;
-    :hover{
-        cursor: pointer;
-        background-color: #1db954;
-        color: white;        
-    }
-`
-
 export const TypographyAlreadyHaveAccount = styled(Typography) `
     text-align: center;
     margin-bottom: 30px;
@@ -60,8 +48,4 @@ export const TypographyAlreadyHaveAccount = styled(Typography) `
 export const ButtonSignUp = styled(Button) `
     color: #fff;
     font-weight: bold;
-`
-
-export const CustomSpan = styled.span`
-    font-weight: 600;
 `
