@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
-import { ManageAlbumsWrapper, PaperManageAlbums, ButtonManageAlbums,TypographyManageAlbums, CustomAlbumIcon, CustomAlbumsWrapper, ButtonManageAlbumsVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon, PaperListAlbums } from './style';
+import { ManageGendersWrapper, PaperManageGenders, ButtonManageGenders,TypographyManageGenders, CustomAlbumIcon, CustomGendersWrapper, ButtonManageGendersVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon, PaperListAlbums } from './style';
 
 import AlbumIcon from '@material-ui/icons/Album';
 
@@ -16,35 +16,35 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 
-class ManageAlbums extends React.Component {
+class ManageGenders extends React.Component {
 
     render() {
         return (
-            <ManageAlbumsWrapper>
-                <PaperManageAlbums elevation={2}>
+            <ManageGendersWrapper>
+                <PaperManageGenders elevation={2}>
                     <CustomAlbumIcon />
-                    <TypographyManageAlbums variant="h4">Gerenciar Álbuns</TypographyManageAlbums>
-                    <ButtonManageAlbums
+                    <TypographyManageGenders variant="h4">Gêneros Musicais</TypographyManageGenders>
+                    <ButtonManageGenders
                         variant="contained"
                         color="primary"
                         type="submit"
-                        onClick={this.props.goToCreateAlbumPage}
+                        onClick={this.props.goToCreateGenderPage}
                     >
                         <CustomAddIcon />
-                        Criar Álbum
-                    </ButtonManageAlbums>                    
-                    <ButtonManageAlbumsVoltar
+                        Criar Gênero
+                    </ButtonManageGenders>                    
+                    <ButtonManageGendersVoltar
                         variant="outlined"
                         color="secondary"
                         type="submit"
-                        onClick={this.props.goToDashboardBandPage}
+                        onClick={this.props.goToAdminPanelPage}
                     >
                         <CustomKeyboardBackspaceIcon />
                         Voltar
-                    </ButtonManageAlbumsVoltar>
-                </PaperManageAlbums>
+                    </ButtonManageGendersVoltar>
+                </PaperManageGenders>
 
-                <CustomAlbumsWrapper>
+                <CustomGendersWrapper>
                     <PaperListAlbums elevation={2}>
                         <List>
                             <ListItem>
@@ -54,7 +54,7 @@ class ManageAlbums extends React.Component {
                                     </Avatar>
                                 </ListItemAvatar>
                                 
-                                <ListItemText primary="Nome do Álbum 1" />
+                                <ListItemText primary="Nome do Gênero 1" />
                                 
                                 <ListItemSecondaryAction>
                                     <IconButton
@@ -72,7 +72,7 @@ class ManageAlbums extends React.Component {
                                     </Avatar>
                                 </ListItemAvatar>
                                 
-                                <ListItemText primary="Nome do Álbum 2" />
+                                <ListItemText primary="Nome do Gênero 2" />
                                 
                                 <ListItemSecondaryAction>
                                     <IconButton
@@ -90,7 +90,7 @@ class ManageAlbums extends React.Component {
                                     </Avatar>
                                 </ListItemAvatar>
                                 
-                                <ListItemText primary="Nome do Álbum 3" />
+                                <ListItemText primary="Nome do Gênero 3" />
                                 
                                 <ListItemSecondaryAction>
                                     <IconButton
@@ -108,7 +108,7 @@ class ManageAlbums extends React.Component {
                                     </Avatar>
                                 </ListItemAvatar>
                                 
-                                <ListItemText primary="Nome do Álbum 4" />
+                                <ListItemText primary="Nome do Gênero 4" />
                                 
                                 <ListItemSecondaryAction>
                                     <IconButton
@@ -121,19 +121,19 @@ class ManageAlbums extends React.Component {
                             </ListItem>
                         </List>
                     </PaperListAlbums>
-                </CustomAlbumsWrapper>
-            </ManageAlbumsWrapper>
+                </CustomGendersWrapper>
+            </ManageGendersWrapper>
         );
     }
 }
 
 const mapDispatchToProps = dispatch =>{
     return{
-        goToDashboardBandPage: () => dispatch(push(routes.dashboardBand)),
-        goToCreateAlbumPage: () => dispatch(push(routes.createAlbum))
+        goToAdminPanelPage: () => dispatch(push(routes.adminPanel)),
+        goToCreateGenderPage: () => dispatch(push(routes.createGender))
     }
   }
   
   
   
-  export default connect (null, mapDispatchToProps) (ManageAlbums);
+  export default connect (null, mapDispatchToProps) (ManageGenders);

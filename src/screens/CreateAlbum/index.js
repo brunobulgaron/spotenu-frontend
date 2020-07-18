@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
@@ -9,8 +9,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
 import TextField from "@material-ui/core/TextField";
-
-import AlbumIcon from '@material-ui/icons/Album';
 
 class CreateAlbum extends React.Component {
 

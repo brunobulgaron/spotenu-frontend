@@ -40,3 +40,12 @@ export const ButtonSignUp = styled(Button) `
     color: #fff;
     font-weight: bold;
 `
+
+export const TypographyGoBack = styled(Typography) `
+    text-align: center;
+    margin-top: 30px;
+    opacity: 50%;
+    :hover{
+        cursor: pointer;
+    }
+`

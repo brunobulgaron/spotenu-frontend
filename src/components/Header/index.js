@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
 import { HeaderWrapper, LogoText, ButtonHeader, ButtonWrapper } from './style'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import SettingsIcon from '@material-ui/icons/Settings';
 
 class Header extends React.Component {
     render() {

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
-import { ManageAlbumsWrapper, PaperManageAlbums, ButtonManageAlbums,TypographyManageAlbums, CustomAlbumIcon, CustomAlbumsWrapper, ButtonManageAlbumsVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon, PaperListAlbums } from './style';
+import { ManageBandsWrapper, PaperManageBands, TypographyManageBands, CustomAlbumIcon, CustomBandsWrapper, ButtonManageBandsVoltar, CustomKeyboardBackspaceIcon, PaperListAlbums, CustomCheck, CustomDelete, CustomStarsIcon } from './style';
 
 import AlbumIcon from '@material-ui/icons/Album';
 
@@ -13,127 +13,139 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
 
-
-class ManageAlbums extends React.Component {
+class ManageBands extends React.Component {
 
     render() {
         return (
-            <ManageAlbumsWrapper>
-                <PaperManageAlbums elevation={2}>
-                    <CustomAlbumIcon />
-                    <TypographyManageAlbums variant="h4">Gerenciar Álbuns</TypographyManageAlbums>
-                    <ButtonManageAlbums
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                        onClick={this.props.goToCreateAlbumPage}
-                    >
-                        <CustomAddIcon />
-                        Criar Álbum
-                    </ButtonManageAlbums>                    
-                    <ButtonManageAlbumsVoltar
+            <ManageBandsWrapper>
+                <PaperManageBands elevation={2}>
+                    <CustomStarsIcon />
+                    <TypographyManageBands variant="h4">Gerenciar Bandas</TypographyManageBands>                                      
+                    <ButtonManageBandsVoltar
                         variant="outlined"
                         color="secondary"
                         type="submit"
-                        onClick={this.props.goToDashboardBandPage}
+                        onClick={this.props.goToAdminPanelPage}
                     >
                         <CustomKeyboardBackspaceIcon />
                         Voltar
-                    </ButtonManageAlbumsVoltar>
-                </PaperManageAlbums>
+                    </ButtonManageBandsVoltar>
+                </PaperManageBands>
 
-                <CustomAlbumsWrapper>
+                <CustomBandsWrapper>
                     <PaperListAlbums elevation={2}>
                         <List>
                             <ListItem>
                                 <ListItemAvatar>
                                     <Avatar>
-                                        <AlbumIcon />
+                                        <CustomStarsIcon />
                                     </Avatar>
                                 </ListItemAvatar>
                                 
-                                <ListItemText primary="Nome do Álbum 1" />
+                                <ListItemText primary="Nome da Banda 1" />
                                 
                                 <ListItemSecondaryAction>
                                     <IconButton
+                                        edge="start"
+                                        aria-label="check"
+                                    >                                        
+                                        <CustomCheck />
+                                    </IconButton>
+                                    <IconButton
                                         edge="end"
                                         aria-label="delete"
-                                    >
-                                        <DeleteIcon />
+                                    >                                        
+                                        <CustomDelete />
                                     </IconButton>
                                 </ListItemSecondaryAction>
                             </ListItem>
                             <ListItem>
                                 <ListItemAvatar>
                                     <Avatar>
-                                        <AlbumIcon />
+                                        <CustomStarsIcon />
                                     </Avatar>
                                 </ListItemAvatar>
                                 
-                                <ListItemText primary="Nome do Álbum 2" />
+                                <ListItemText primary="Nome da Banda 2" />
                                 
                                 <ListItemSecondaryAction>
+                                    <IconButton
+                                        edge="start"
+                                        aria-label="check"
+                                    >                                        
+                                        <CustomCheck />
+                                    </IconButton>
                                     <IconButton
                                         edge="end"
                                         aria-label="delete"
                                     >
-                                        <DeleteIcon />
+                                        <CustomDelete />
                                     </IconButton>
                                 </ListItemSecondaryAction>
                             </ListItem>
                             <ListItem>
                                 <ListItemAvatar>
                                     <Avatar>
-                                        <AlbumIcon />
+                                        <CustomStarsIcon />
                                     </Avatar>
                                 </ListItemAvatar>
                                 
-                                <ListItemText primary="Nome do Álbum 3" />
+                                <ListItemText primary="Nome da Banda 3" />
                                 
                                 <ListItemSecondaryAction>
+                                    <IconButton
+                                        edge="start"
+                                        aria-label="check"
+                                    >                                        
+                                        <CustomCheck />
+                                    </IconButton>
                                     <IconButton
                                         edge="end"
                                         aria-label="delete"
                                     >
-                                        <DeleteIcon />
+                                        <CustomDelete />
                                     </IconButton>
                                 </ListItemSecondaryAction>
                             </ListItem>
                             <ListItem>
                                 <ListItemAvatar>
                                     <Avatar>
-                                        <AlbumIcon />
+                                        <CustomStarsIcon />
                                     </Avatar>
                                 </ListItemAvatar>
                                 
-                                <ListItemText primary="Nome do Álbum 4" />
+                                <ListItemText primary="Nome da Banda 4" />
                                 
                                 <ListItemSecondaryAction>
+                                    <IconButton
+                                        edge="start"
+                                        aria-label="check"
+                                    >                                        
+                                        <CustomCheck />
+                                    </IconButton>
                                     <IconButton
                                         edge="end"
                                         aria-label="delete"
                                     >
-                                        <DeleteIcon />
+                                        <CustomDelete />
                                     </IconButton>
                                 </ListItemSecondaryAction>
                             </ListItem>
                         </List>
                     </PaperListAlbums>
-                </CustomAlbumsWrapper>
-            </ManageAlbumsWrapper>
+                </CustomBandsWrapper>
+            </ManageBandsWrapper>
         );
     }
 }
 
 const mapDispatchToProps = dispatch =>{
     return{
-        goToDashboardBandPage: () => dispatch(push(routes.dashboardBand)),
-        goToCreateAlbumPage: () => dispatch(push(routes.createAlbum))
+        goToAdminPanelPage: () => dispatch(push(routes.adminPanel))
     }
   }
   
   
   
-  export default connect (null, mapDispatchToProps) (ManageAlbums);
+  export default connect (null, mapDispatchToProps) (ManageBands);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
@@ -16,13 +16,15 @@ class AdminPanel extends React.Component {
                         variant="contained"
                         color="primary"
                         type="submit"
+                        onClick={this.props.goToManageBandsPage}
                     >
-                        Aprovar Bandas
+                        Bandas
                     </ButtonAdminPanel>
                     <ButtonAdminPanel
                         variant="contained"
                         color="primary"
                         type="submit"
+                        onClick={this.props.goToManageGendersPage}
                     >
                         Gêneros Musicais
                     </ButtonAdminPanel>
@@ -47,6 +49,8 @@ class AdminPanel extends React.Component {
 const mapDispatchToProps = dispatch =>{
     return{
       goToSignUpUserAdminPage: () => dispatch(push(routes.signUpUserAdmin)),
+      goToManageGendersPage: () => dispatch(push(routes.manageGenders)),
+      goToManageBandsPage: () => dispatch(push(routes.manageBands))
     }
   }
   

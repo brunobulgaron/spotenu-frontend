@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
-import { DashboardBandWrapper, PaperDashboardBand, ButtonDashboardBand,TypographyDashboardBand, CustomStarsIcon, CustomPersonIcon, CustomSVG, CustomSVGWrapper } from './style';
+import { DashboardBandWrapper, PaperDashboardBand, ButtonDashboardBand,TypographyDashboardBand, CustomStarsIcon, CustomSVG, CustomSVGWrapper } from './style';
 
 class DashboardBand extends React.Component {
 

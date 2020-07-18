@@ -6,7 +6,6 @@ import Login from "../Login";
 import SignUpUserFree from "../SignUpUserFree";
 import SignUpUserBand from "../SignUpUserBand";
 import SignUpUserAdmin from "../SignUpUserAdmin";
-import Dashboard from "../Dashboard";
 import DashboardBand from "../DashboardBand";
 import AdminPanel from '../AdminPanel';
 import ManageAlbums from "../ManageAlbums";
@@ -14,6 +13,9 @@ import ManageSongs from "../ManageSongs";
 import ManageProfile from "../ManageProfile";
 import CreateAlbum from "../CreateAlbum";
 import CreateSong from "../CreateSong";
+import ManageGenders from "../ManageGenders";
+import CreateGender from "../CreateGender";
+import ManageBands from "../ManageBands";
 
 
 export const routes = {
@@ -22,14 +24,16 @@ export const routes = {
   signUpUserFree: "/user/signup",
   signUpUserBand: "/user/signupBand",
   signUpUserAdmin: "/user/signupAdmin",
-  dashboard: "/dashboard",
   dashboardBand: "/dashboardBand",
   adminPanel: "/admin",
   manageAlbums: "/albums",
   manageSongs: "/songs",
   manageProfile: "/profile",
   createAlbum: "/albums/create",
-  createSong: "/songs/create"
+  createSong: "/songs/create",
+  manageGenders: "/genders",
+  createGender: "/genders/create",
+  manageBands: "/bands"
 };
 
 export function Router(props) {
@@ -41,7 +45,6 @@ export function Router(props) {
           <Route exact path={routes.signUpUserFree} component={SignUpUserFree} />
           <Route exact path={routes.signUpUserBand} component={SignUpUserBand} />
           <Route exact path={routes.signUpUserAdmin} component={SignUpUserAdmin} />
-          <Route exact path={routes.dashboard} component={Dashboard} />
           <Route exact path={routes.dashboardBand} component={DashboardBand} />
           <Route exact path={routes.adminPanel} component={AdminPanel} />
           <Route exact path={routes.manageAlbums} component={ManageAlbums} />
@@ -49,6 +52,9 @@ export function Router(props) {
           <Route exact path={routes.manageProfile} component={ManageProfile} />
           <Route exact path={routes.createAlbum} component={CreateAlbum} />
           <Route exact path={routes.createSong} component={CreateSong} />
+          <Route exact path={routes.manageGenders} component={ManageGenders} />
+          <Route exact path={routes.createGender} component={CreateGender} />
+          <Route exact path={routes.manageBands} component={ManageBands} />
         </Switch>
     </ConnectedRouter>
   );

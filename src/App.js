@@ -10,8 +10,6 @@ import { generateReducers } from "./reducers";
 import { routerMiddleware } from "connected-react-router";
 import { AppWrapper, ContentWrapper, RouterWrapper } from "./style";
 import Header from "./components/Header";
-import SignUpUserFree from "./screens/SignUpUserFree";
-import Login from "./screens/Login";
 
 export const history = createBrowserHistory();
 

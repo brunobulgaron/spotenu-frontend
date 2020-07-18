@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
 import {
     ButtonSignUp,
     TypographySignUp,
+    TypographyGoBack,
     SignUpUserAdminWrapper,
     FormSignUp,
     PaperSignUp,    
@@ -64,7 +65,8 @@ class SignUpUserAdmin extends React.Component {
                             type="submit"
                         >
                             Cadastrar
-                        </ButtonSignUp>                       
+                        </ButtonSignUp>
+                        <TypographyGoBack onClick={this.props.goToAdminPanelPage}>Voltar para o painel</TypographyGoBack>
                     </FormSignUp>
                 </PaperSignUp>
             </SignUpUserAdminWrapper>
@@ -74,7 +76,7 @@ class SignUpUserAdmin extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
-      goToLoginPage: () => dispatch(push(routes.login))     
+        goToAdminPanelPage: () => dispatch(push(routes.adminPanel))
     }
   }
   
