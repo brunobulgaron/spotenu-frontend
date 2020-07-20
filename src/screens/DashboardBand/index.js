@@ -1,25 +1,26 @@
 import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { DashboardBandWrapper, PaperDashboardBand, ButtonDashboardBand,TypographyDashboardBand, CustomStarsIcon, CustomSVG, CustomSVGWrapper } from './style';
 
 class DashboardBand extends React.Component {
 
+    componentDidMount() {
+        const {goToLoginPage} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token === null){
+            goToLoginPage();
+        };
+    };
+    
     render() {
         return (
             <DashboardBandWrapper>
                 <PaperDashboardBand elevation={2}>
                     <CustomStarsIcon />
                     <TypographyDashboardBand variant="h4">Painel dos Artistas</TypographyDashboardBand>
-                    {/* <ButtonDashboardBand
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                        onClick={this.props.goToDashboardBandPage}
-                    >
-                        Painel
-                    </ButtonDashboardBand> */}
                     <ButtonDashboardBand
                         variant="contained"
                         color="primary"
@@ -56,6 +57,7 @@ class DashboardBand extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+      goToLoginPage: () => dispatch(replace(routes.login)),
       goToManageAlbumsPage: () => dispatch(push(routes.manageAlbums)),
       goToDashboardBandPage: () => dispatch(push(routes.dashboardBand)),
       goToManageSongsPage: () => dispatch(push(routes.manageSongs)),

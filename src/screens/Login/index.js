@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
+import { login } from '../../actions/login';
 import {
     TypographyLogin,
     LoginWrapper,
@@ -13,12 +14,45 @@ import {
 import TextField from "@material-ui/core/TextField";
 
 class Login extends React.Component {
+    constructor(props){
+        super(props)
+        
+        this.state = {
+          loginForm: {}
+        }
+      }
+
+    componentDidMount() {
+        const {goToHome} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token !== null){
+            goToHome();
+        };
+    };
+
+    handleInputChange = event => {
+        const {name, value} = event.target
+      
+        this.setState({
+            loginForm: {
+                ...this.state.loginForm,
+                [name]: value 
+            }
+        });
+    };
+
+    handleOnSubmit = event => {
+        event.preventDefault();
+
+        this.props.login(this.state.loginForm)        
+    };
 
     render() {
         return (
             <LoginWrapper>
                 <PaperLogin elevation={3}>
-                    <FormLogin>
+                    <FormLogin onSubmit={this.handleOnSubmit}>
                         <TypographyLogin variant="h4">Login</TypographyLogin>                    
                         <TextField
                             label="E-mail"
@@ -28,6 +62,8 @@ class Login extends React.Component {
                             pattern="[a-z0-9_.+-%]+@[a-z0-9.-]+\.[a-z]{3,}$"
                             title="E-mail inválido"
                             required
+                            onChange={this.handleInputChange}
+                            value={this.state.loginForm.email}
                         />
                         <TextField
                             label="Senha"
@@ -36,6 +72,8 @@ class Login extends React.Component {
                             type="password"
                             pattern="[A-Za-z0-9]{4,8}"
                             required
+                            onChange={this.handleInputChange}
+                            value={this.state.loginForm.password}
                         />
                         <ButtonLogin
                             variant="contained"
@@ -54,6 +92,7 @@ class Login extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+      login: (body) => dispatch(login(body)),
       goToLoginPage: () => dispatch(push(routes.login)),
       goToSignUpPage: () => dispatch(push(routes.signUpUserFree)),
       goToHome: () => dispatch(push(routes.root))

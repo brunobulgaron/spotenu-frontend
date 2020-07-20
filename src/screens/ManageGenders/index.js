@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { ManageGendersWrapper, PaperManageGenders, ButtonManageGenders,TypographyManageGenders, CustomAlbumIcon, CustomGendersWrapper, ButtonManageGendersVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon, PaperListAlbums } from './style';
 
 import AlbumIcon from '@material-ui/icons/Album';
@@ -17,6 +17,15 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 
 class ManageGenders extends React.Component {
+
+    componentDidMount() {
+        const {goToLoginPage} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token === null){
+            goToLoginPage();
+        };
+    };
 
     render() {
         return (
@@ -129,6 +138,7 @@ class ManageGenders extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+        goToLoginPage: () => dispatch(replace(routes.login)),
         goToAdminPanelPage: () => dispatch(push(routes.adminPanel)),
         goToCreateGenderPage: () => dispatch(push(routes.createGender))
     }

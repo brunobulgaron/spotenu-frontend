@@ -5,23 +5,31 @@ import { push } from "connected-react-router";
 import { HeaderWrapper, LogoText, ButtonHeader, ButtonWrapper } from './style'
 
 class Header extends React.Component {
+
+    logout = () => {
+        localStorage.clear()
+        this.props.goToLoginPage()
+        window.location.reload(false)
+    };
+
     render() {
         return (
             <HeaderWrapper>
                 <LogoText variant="h3" onClick={this.props.goToHome}>Spotenu</LogoText>
                 <ButtonWrapper>
                     <ButtonHeader
-                        onClick={this.props.goToLoginPage}
-                    >
-                        {/* <AccountCircleIcon /> */}
-                        Entrar
-                    </ButtonHeader>
-                    <ButtonHeader
                         onClick={this.props.goToAdminPanel}
                     >
-                        {/* <SettingsIcon /> */}
                         Painel
                     </ButtonHeader>
+
+                    {(localStorage.getItem("token") === null) && (
+                        <ButtonHeader onClick={this.props.goToLoginPage}>Entrar</ButtonHeader>
+                    )}
+
+                    {(localStorage.getItem("token") !== null) && (
+                        <ButtonHeader onClick={this.logout}>Sair</ButtonHeader>
+                    )}
                 </ButtonWrapper>
             </HeaderWrapper>
         )

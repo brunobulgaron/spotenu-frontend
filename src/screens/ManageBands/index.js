@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { ManageBandsWrapper, PaperManageBands, TypographyManageBands, CustomBandsWrapper, ButtonManageBandsVoltar, CustomKeyboardBackspaceIcon, PaperListAlbums, CustomCheck, CustomDelete, CustomStarsIcon } from './style';
 
 // import AlbumIcon from '@material-ui/icons/Album';
@@ -15,6 +15,15 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 
 class ManageBands extends React.Component {
+
+    componentDidMount() {
+        const {goToLoginPage} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token === null){
+            goToLoginPage();
+        };
+    };
 
     render() {
         return (
@@ -142,6 +151,7 @@ class ManageBands extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+        goToLoginPage: () => dispatch(replace(routes.login)),
         goToAdminPanelPage: () => dispatch(push(routes.adminPanel))
     }
   }

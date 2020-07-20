@@ -1,12 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { CreateGenderWrapper, PaperCreateGender, ButtonCreateGender,TypographyCreateGender, CustomAlbumIcon, CustomGendersWrapper, ButtonCreateGenderVoltar, CustomKeyboardBackspaceIcon, PaperListAlbums, FormCreateGender } from './style';
 
 import TextField from "@material-ui/core/TextField";
 
 class CreateGender extends React.Component {
+
+    componentDidMount() {
+        const {goToLoginPage} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token === null){
+            goToLoginPage();
+        };
+    };
 
     render() {
         return (
@@ -55,6 +64,7 @@ class CreateGender extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+        goToLoginPage: () => dispatch(replace(routes.login)),
         goToManageGendersPage: () => dispatch(push(routes.manageGenders))
     }
   }

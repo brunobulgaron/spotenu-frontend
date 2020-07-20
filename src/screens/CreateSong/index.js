@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { CreateSongWrapper, PaperCreateSong, ButtonCreateSong,TypographyCreateSong, CustomAlbumIcon, CustomAlbumsWrapper, ButtonCreateSongVoltar, CustomKeyboardBackspaceIcon, PaperListAlbums, FormCreateSong } from './style';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,6 +11,15 @@ import Select from '@material-ui/core/Select';
 import TextField from "@material-ui/core/TextField";
 
 class CreateSong extends React.Component {
+
+    componentDidMount() {
+        const {goToLoginPage} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token === null){
+            goToLoginPage();
+        };
+    };
 
     render() {
         return (
@@ -70,6 +79,7 @@ class CreateSong extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+        goToLoginPage: () => dispatch(replace(routes.login)),
         goToManageSongsPage: () => dispatch(push(routes.manageSongs))
     }
   }

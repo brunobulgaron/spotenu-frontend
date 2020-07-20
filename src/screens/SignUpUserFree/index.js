@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
+import { signUpUserFree } from '../../actions/login';
 import {
     ButtonSignUp,
     TypographySignUp,
@@ -14,11 +15,39 @@ import {
 import TextField from "@material-ui/core/TextField";
 
 class SignUpUserFree extends React.Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            signUpUserFreeForm: {}
+        };
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+      
+        this.props.signUpUserFree(this.state.signUpUserFreeForm);
+    };
+
+    handleInputChange = event => {
+        const { name, value } = event.target
+
+        this.setState({
+            signUpUserFreeForm: {
+                ...this.state.signUpUserFreeForm,
+                [name]: value
+            }
+        });
+    };
+
     render() {
+        
+        const { signUpUserFreeForm } = this.state;
+        
         return (
             <SignUpUserFreeWrapper>
                 <PaperSignUp elevation={3}>
-                    <FormSignUp>
+                    <FormSignUp onSubmit={this.handleFormSubmit}>
                         <TypographySignUp variant="h4">Nova Conta</TypographySignUp>                        
                         <TextField
                             label="Nome"
@@ -27,13 +56,18 @@ class SignUpUserFree extends React.Component {
                             type="text"
                             pattern="[A-Za-z ãé]{5,}"
                             required
+                            onChange={this.handleInputChange}
+                            value={signUpUserFreeForm.name}
                         />
                         <TextField
                             label="Apelido"
                             variant="outlined"
                             name="nickname"
                             type="text"
-                            pattern="[A-Za-z ãé]{5,}"                        
+                            pattern="[A-Za-z ãé]{5,}"
+                            required
+                            onChange={this.handleInputChange}
+                            value={signUpUserFreeForm.nickname}
                         />
                         <TextField
                             label="E-mail"
@@ -43,6 +77,8 @@ class SignUpUserFree extends React.Component {
                             pattern="[a-z0-9_.+-%]+@[a-z0-9.-]+\.[a-z]{3,}$"
                             title="E-mail inválido"
                             required
+                            onChange={this.handleInputChange}
+                            value={signUpUserFreeForm.email}
                         />
                         <TextField
                             label="Senha"
@@ -51,6 +87,8 @@ class SignUpUserFree extends React.Component {
                             type="password"
                             pattern="[A-Za-z0-9]{4,8}"
                             required
+                            onChange={this.handleInputChange}
+                            value={signUpUserFreeForm.password}
                         />
                         <ButtonSignUp
                             variant="contained"
@@ -69,6 +107,7 @@ class SignUpUserFree extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+      signUpUserFree: (body) => dispatch(signUpUserFree(body)),
       goToLoginPage: () => dispatch(push(routes.login))     
     }
   }

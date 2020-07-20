@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { ManageProfileWrapper, PaperManageProfile, TypographyManageProfile, CustomPersonIcon, CustomSVG, CustomSVGWrapper, ButtonManageProfileVoltar, CustomHighlightOffIcon, CustomKeyboardBackspaceIcon, ButtonManageProfileExcluir, TypographyProfileInfo, CustomSpan, CustomModal } from './style';
 
 CustomModal.setAppElement('#root');
@@ -14,6 +14,15 @@ class ManageProfile extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const {goToLoginPage} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token === null){
+            goToLoginPage();
+        };
+    };
+
     handleModal = () => {
         this.setState({modalIsOpen: true})
     };
@@ -24,7 +33,7 @@ class ManageProfile extends React.Component {
 
     render() {
         return (            
-            <ManageProfileWrapper className="noselect">
+            <ManageProfileWrapper>
                 
                 <CustomModal isOpen={this.state.modalIsOpen} onRequestClose={this.handleModalClose}>
                     <CustomHighlightOffIcon />
@@ -76,6 +85,7 @@ class ManageProfile extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+        goToLoginPage: () => dispatch(replace(routes.login)),
         goToDashboardBandPage: () => dispatch(push(routes.dashboardBand))
     }
   }

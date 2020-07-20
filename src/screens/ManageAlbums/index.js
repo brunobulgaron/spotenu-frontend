@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { ManageAlbumsWrapper, PaperManageAlbums, ButtonManageAlbums,TypographyManageAlbums, CustomAlbumIcon, CustomAlbumsWrapper, ButtonManageAlbumsVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon, PaperListAlbums } from './style';
 
 import AlbumIcon from '@material-ui/icons/Album';
@@ -17,6 +17,15 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 
 class ManageAlbums extends React.Component {
+
+    componentDidMount() {
+        const {goToLoginPage} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token === null){
+            goToLoginPage();
+        };
+    };
 
     render() {
         return (
@@ -129,6 +138,7 @@ class ManageAlbums extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+        goToLoginPage: () => dispatch(push(replace.login)),
         goToDashboardBandPage: () => dispatch(push(routes.dashboardBand)),
         goToCreateAlbumPage: () => dispatch(push(routes.createAlbum))
     }

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
+import { signUpUserAdmin } from '../../actions/login';
 import {
     ButtonSignUp,
     TypographySignUp,
@@ -13,11 +14,40 @@ import {
 import TextField from "@material-ui/core/TextField";
 
 class SignUpUserAdmin extends React.Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            signUpUserAdminForm: {}
+        };
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+      
+        this.props.signUpUserAdmin(this.state.signUpUserAdminForm);
+    };
+
+    handleInputChange = event => {
+        const { name, value } = event.target
+
+        this.setState({
+            signUpUserAdminForm: {
+                ...this.state.signUpUserAdminForm,
+                [name]: value
+            }
+        });
+    };
+
+
     render() {
+
+        const { signUpUserAdminForm } = this.state;
+
         return (
             <SignUpUserAdminWrapper>
                 <PaperSignUp elevation={3}>
-                    <FormSignUp>
+                    <FormSignUp onSubmit={this.handleFormSubmit}>
                         <TypographySignUp variant="h4">Cadastrar Administrador</TypographySignUp>
                         <TextField
                             label="Nome"
@@ -26,6 +56,8 @@ class SignUpUserAdmin extends React.Component {
                             type="text"
                             pattern="[A-Za-z ãé]{5,}"
                             required
+                            onChange={this.handleInputChange}
+                            value={signUpUserAdminForm.name}
                         />
                         <TextField
                             label="Apelido"
@@ -34,14 +66,9 @@ class SignUpUserAdmin extends React.Component {
                             type="text"
                             pattern="[A-Za-z ãé]{5,}"
                             required
-                        />
-                        {/* <TextField
-                            label="Descrição"
-                            variant="outlined"
-                            name="description"
-                            type="text"
-                            pattern="[A-Za-z ãé]{5,}"                        
-                        /> */}
+                            onChange={this.handleInputChange}
+                            value={signUpUserAdminForm.nickname}
+                        />                        
                         <TextField
                             label="E-mail"
                             variant="outlined"
@@ -50,6 +77,8 @@ class SignUpUserAdmin extends React.Component {
                             pattern="[a-z0-9_.+-%]+@[a-z0-9.-]+\.[a-z]{3,}$"
                             title="E-mail inválido"
                             required
+                            onChange={this.handleInputChange}
+                            value={signUpUserAdminForm.email}
                         />
                         <TextField
                             label="Senha"
@@ -58,6 +87,8 @@ class SignUpUserAdmin extends React.Component {
                             type="password"
                             pattern="[A-Za-z0-9]{4,8}"
                             required
+                            onChange={this.handleInputChange}
+                            value={signUpUserAdminForm.password}
                         />
                         <ButtonSignUp
                             variant="contained"
@@ -76,6 +107,7 @@ class SignUpUserAdmin extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+        signUpUserAdmin: (body) => dispatch(signUpUserAdmin(body)),
         goToAdminPanelPage: () => dispatch(push(routes.adminPanel))
     }
   }

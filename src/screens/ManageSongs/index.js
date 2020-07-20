@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { ManageSongsWrapper, PaperManageSongs, ButtonManageSongs,TypographyManageSongs, CustomMusicNoteIcon, ButtonManageSongsVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon, CustomSongsWrapper, PaperListSongs, CustomTableCell } from './style';
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -12,6 +12,15 @@ import TableRow from "@material-ui/core/TableRow";
 
 
 class ManageSongs extends React.Component {
+
+    componentDidMount() {
+        const {goToLoginPage} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token === null){
+            goToLoginPage();
+        };
+    };
 
     render() {
         return (
@@ -93,6 +102,7 @@ class ManageSongs extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+        goToLoginPage: () => dispatch(replace(routes.login)),
         goToDashboardBandPage: () => dispatch(push(routes.dashboardBand)),
         goToCreateSongPage: () => dispatch(push(routes.createSong))
     }

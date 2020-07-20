@@ -1,10 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { AdminPanelWrapper, PaperAdminPanel, ButtonAdminPanel,TypographyAdminPanel, CustomBuildIcon, CustomSVG, CustomSVGWrapper } from './style';
 
 class AdminPanel extends React.Component {
+
+    componentDidMount() {
+        const {goToLoginPage} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token === null){
+            goToLoginPage();
+        };
+    };
 
     render() {
         return (
@@ -48,6 +57,7 @@ class AdminPanel extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+      goToLoginPage: () => dispatch(replace(routes.login)), 
       goToSignUpUserAdminPage: () => dispatch(push(routes.signUpUserAdmin)),
       goToManageGendersPage: () => dispatch(push(routes.manageGenders)),
       goToManageBandsPage: () => dispatch(push(routes.manageBands))

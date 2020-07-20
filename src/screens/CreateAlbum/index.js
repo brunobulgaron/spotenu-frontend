@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { CreateAlbumWrapper, PaperCreateAlbum, ButtonCreateAlbum,TypographyCreateAlbum, CustomAlbumIcon, CustomAlbumsWrapper, ButtonCreateAlbumVoltar, CustomKeyboardBackspaceIcon, PaperListAlbums, FormCreateAlbum } from './style';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,6 +11,15 @@ import Select from '@material-ui/core/Select';
 import TextField from "@material-ui/core/TextField";
 
 class CreateAlbum extends React.Component {
+
+    componentDidMount() {
+        const {goToLoginPage} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token === null){
+            goToLoginPage();
+        };
+    };
 
     render() {
         return (
@@ -70,7 +79,8 @@ class CreateAlbum extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
-        goToManageAlbumsPage: () => dispatch(push(routes.manageAlbums))
+      goToLoginPage: () => dispatch(replace(routes.login)),     
+      goToManageAlbumsPage: () => dispatch(push(routes.manageAlbums))
     }
   }
   

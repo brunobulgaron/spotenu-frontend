@@ -32,7 +32,7 @@ class Home extends React.Component {
 
                     <PaperHome elevation={3}>
                         <WomanCard></WomanCard>
-                    </PaperHome>                                        
+                    </PaperHome>
 
                     <PaperHomeBanda elevation={3}>
                         <TypographyHome variant="h4">Artistas</TypographyHome>
@@ -50,8 +50,8 @@ class Home extends React.Component {
                         <TypographyItem>
                             <StarIcon color="primary"/>
                             <TypographyText>Seja <CustomSpan>reconhecido!</CustomSpan></TypographyText>
-                        </TypographyItem>
-
+                        </TypographyItem>                       
+                       
                         <ButtonWrapper>
                             <ButtonHome
                                 variant="contained"
@@ -61,7 +61,6 @@ class Home extends React.Component {
                             >Cadastre-se!
                             </ButtonHome>
                         </ButtonWrapper>
-
                     </PaperHomeBanda>
 
                     <PaperHomeOuvinte elevation={3}>
@@ -91,7 +90,6 @@ class Home extends React.Component {
                             >Cadastre-se!
                             </ButtonHome>
                         </ButtonWrapper>
-
                     </PaperHomeOuvinte>
                 </SecondWrapper>
             </HomeWrapper>
