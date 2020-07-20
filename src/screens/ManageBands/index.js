@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
-import { ManageBandsWrapper, PaperManageBands, TypographyManageBands, CustomAlbumIcon, CustomBandsWrapper, ButtonManageBandsVoltar, CustomKeyboardBackspaceIcon, PaperListAlbums, CustomCheck, CustomDelete, CustomStarsIcon } from './style';
+import { ManageBandsWrapper, PaperManageBands, TypographyManageBands, CustomBandsWrapper, ButtonManageBandsVoltar, CustomKeyboardBackspaceIcon, PaperListAlbums, CustomCheck, CustomDelete, CustomStarsIcon } from './style';
 
-import AlbumIcon from '@material-ui/icons/Album';
+// import AlbumIcon from '@material-ui/icons/Album';
 
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";

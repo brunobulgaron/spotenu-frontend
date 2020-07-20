@@ -6,6 +6,23 @@ import PersonIcon from '@material-ui/icons/Person';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
+import Modal from 'react-modal';
+
+export const CustomModal = styled(Modal)`
+    width: 30vw;
+    height: 30vh;
+    background-color: #fafafa;
+    outline: none;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+    box-shadow: 2px 2px #d3d3d3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    align-items: center;    
+    margin: 18% auto;
+`
+
 export const ManageProfileWrapper = styled.div `
     /* height: 100%; */
     /* width: 100%; */

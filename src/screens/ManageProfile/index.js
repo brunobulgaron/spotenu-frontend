@@ -2,13 +2,39 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push } from "connected-react-router";
-import { ManageProfileWrapper, PaperManageProfile, TypographyManageProfile, CustomPersonIcon, CustomSVG, CustomSVGWrapper, ButtonManageProfileVoltar, CustomHighlightOffIcon, CustomKeyboardBackspaceIcon, ButtonManageProfileExcluir, TypographyProfileInfo, CustomSpan } from './style';
+import { ManageProfileWrapper, PaperManageProfile, TypographyManageProfile, CustomPersonIcon, CustomSVG, CustomSVGWrapper, ButtonManageProfileVoltar, CustomHighlightOffIcon, CustomKeyboardBackspaceIcon, ButtonManageProfileExcluir, TypographyProfileInfo, CustomSpan, CustomModal } from './style';
+
+CustomModal.setAppElement('#root');
 
 class ManageProfile extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            modalIsOpen: false
+        }
+    }
+
+    handleModal = () => {
+        this.setState({modalIsOpen: true})
+    };
+
+    handleModalClose = () => {
+        this.setState({modalIsOpen: false})
+    };
 
     render() {
-        return (
-            <ManageProfileWrapper>
+        return (            
+            <ManageProfileWrapper className="noselect">
+                
+                <CustomModal isOpen={this.state.modalIsOpen} onRequestClose={this.handleModalClose}>
+                    <CustomHighlightOffIcon />
+                    
+                    <TypographyManageProfile variant="h4">Função desabilitada!</TypographyManageProfile>
+                    <TypographyProfileInfo>Clique fora desse aviso para fechar.</TypographyProfileInfo>
+                
+                </CustomModal>
+                
+                
                 <PaperManageProfile elevation={2}>
                     <CustomPersonIcon />
                     <TypographyManageProfile variant="h4">Gerenciar Perfil</TypographyManageProfile>
@@ -33,6 +59,7 @@ class ManageProfile extends React.Component {
                     <ButtonManageProfileExcluir
                         variant="contained"
                         type="submit"
+                        onClick={this.handleModal}
                     >
                         <CustomHighlightOffIcon />
                         Excluir Perfil
