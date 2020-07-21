@@ -16,7 +16,7 @@ class AdminPanel extends React.Component {
     };
 
     render() {
-        return (
+        return (                            
             <AdminPanelWrapper>
                 <PaperAdminPanel elevation={2}>
                     <CustomBuildIcon />
@@ -60,7 +60,7 @@ const mapDispatchToProps = dispatch =>{
       goToLoginPage: () => dispatch(replace(routes.login)), 
       goToSignUpUserAdminPage: () => dispatch(push(routes.signUpUserAdmin)),
       goToManageGendersPage: () => dispatch(push(routes.manageGenders)),
-      goToManageBandsPage: () => dispatch(push(routes.manageBands))
+      goToManageBandsPage: () => dispatch(push(routes.manageBands)),
     }
   }
   

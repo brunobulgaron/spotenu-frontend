@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { push } from "connected-react-router";
 import { routes } from '../screens/Router';
-import { getElementError } from '@testing-library/react';
 
 export const signUpUserFree = (body) => async (dispatch) => {
     try{
@@ -49,5 +48,6 @@ export const login = (body) => async (dispatch) => {
         window.location.reload();
     }catch(error){
         alert(JSON.stringify(error.response.data.error));
+        // alert(error);
     };
 };

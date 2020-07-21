@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push, replace } from "connected-react-router";
+import { getBands } from '../../actions/band';
 import { ManageBandsWrapper, PaperManageBands, TypographyManageBands, CustomBandsWrapper, ButtonManageBandsVoltar, CustomKeyboardBackspaceIcon, PaperListAlbums, CustomCheck, CustomDelete, CustomStarsIcon } from './style';
 
 // import AlbumIcon from '@material-ui/icons/Album';
@@ -17,11 +18,13 @@ import IconButton from "@material-ui/core/IconButton";
 class ManageBands extends React.Component {
 
     componentDidMount() {
-        const {goToLoginPage} = this.props;
+        const {goToLoginPage, getBands} = this.props;
         const token = localStorage.getItem("token");
 
         if(token === null){
             goToLoginPage();
+        }else{
+            getBands(token);
         };
     };
 
@@ -42,106 +45,38 @@ class ManageBands extends React.Component {
                     </ButtonManageBandsVoltar>
                 </PaperManageBands>
 
-                <CustomBandsWrapper>
+                <CustomBandsWrapper>                    
                     <PaperListAlbums elevation={2}>
-                        <List>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <CustomStarsIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome da Banda 1" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="start"
-                                        aria-label="check"
-                                    >                                        
-                                        <CustomCheck />
-                                    </IconButton>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >                                        
-                                        <CustomDelete />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <CustomStarsIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome da Banda 2" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="start"
-                                        aria-label="check"
-                                    >                                        
-                                        <CustomCheck />
-                                    </IconButton>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >
-                                        <CustomDelete />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <CustomStarsIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome da Banda 3" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="start"
-                                        aria-label="check"
-                                    >                                        
-                                        <CustomCheck />
-                                    </IconButton>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >
-                                        <CustomDelete />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <CustomStarsIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome da Banda 4" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="start"
-                                        aria-label="check"
-                                    >                                        
-                                        <CustomCheck />
-                                    </IconButton>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >
-                                        <CustomDelete />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                        </List>
+                        {this.props.bands && this.props.bands.map((band) => {
+                            return (
+                                <List>
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            <Avatar>
+                                                <CustomStarsIcon />
+                                            </Avatar>
+                                        </ListItemAvatar>
+                                        
+                                        <ListItemText primary={band.name} />
+                                        
+                                        <ListItemSecondaryAction>
+                                            <IconButton
+                                                edge="start"
+                                                aria-label="check"
+                                            >                                        
+                                                <CustomCheck />
+                                            </IconButton>
+                                            <IconButton
+                                                edge="end"
+                                                aria-label="delete"
+                                            >                                        
+                                                <CustomDelete />
+                                            </IconButton>
+                                        </ListItemSecondaryAction>
+                                    </ListItem>
+                                </List>
+                            )
+                        })}
                     </PaperListAlbums>
                 </CustomBandsWrapper>
             </ManageBandsWrapper>
@@ -149,13 +84,20 @@ class ManageBands extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        bands: state.band.bands
+    }
+}
+
 const mapDispatchToProps = dispatch =>{
     return{
         goToLoginPage: () => dispatch(replace(routes.login)),
-        goToAdminPanelPage: () => dispatch(push(routes.adminPanel))
+        goToAdminPanelPage: () => dispatch(push(routes.adminPanel)),
+        getBands: (token) => dispatch(getBands(token))
     }
   }
   
   
   
-  export default connect (null, mapDispatchToProps) (ManageBands);
+export default connect (mapStateToProps, mapDispatchToProps) (ManageBands);

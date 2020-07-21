@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push, replace } from "connected-react-router";
-import { ManageGendersWrapper, PaperManageGenders, ButtonManageGenders,TypographyManageGenders, CustomAlbumIcon, CustomGendersWrapper, ButtonManageGendersVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon, PaperListAlbums } from './style';
+import { getGenders } from '../../actions/gender';
+import { ManageGendersWrapper, PaperManageGenders, ButtonManageGenders,TypographyManageGenders, CustomAlbumIcon, CustomGendersWrapper, ButtonManageGendersVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon, PaperListAlbums, CustomHR } from './style';
 
 import AlbumIcon from '@material-ui/icons/Album';
 
@@ -19,16 +20,19 @@ import DeleteIcon from "@material-ui/icons/Delete";
 class ManageGenders extends React.Component {
 
     componentDidMount() {
-        const {goToLoginPage} = this.props;
+        const {goToLoginPage, getGenders} = this.props;
         const token = localStorage.getItem("token");
 
         if(token === null){
             goToLoginPage();
+        }else{
+            getGenders(token);
         };
     };
+    
 
     render() {
-        return (
+        return(
             <ManageGendersWrapper>
                 <PaperManageGenders elevation={2}>
                     <CustomAlbumIcon />
@@ -53,86 +57,43 @@ class ManageGenders extends React.Component {
                     </ButtonManageGendersVoltar>
                 </PaperManageGenders>
 
-                <CustomGendersWrapper>
+                <CustomGendersWrapper>                    
                     <PaperListAlbums elevation={2}>
-                        <List>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <AlbumIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome do Gênero 1" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <AlbumIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome do Gênero 2" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <AlbumIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome do Gênero 3" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <AlbumIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome do Gênero 4" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                        </List>
+                        {this.props.genders && this.props.genders.map((gender) => {
+                            return (
+                                <List key={gender.id}>
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            <Avatar>
+                                                <AlbumIcon />
+                                            </Avatar>
+                                        </ListItemAvatar>
+                                        
+                                        <ListItemText primary={gender.name} />
+                                        
+                                        <ListItemSecondaryAction>
+                                            <IconButton
+                                                edge="end"
+                                                aria-label="delete"
+                                            >
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        </ListItemSecondaryAction>
+                                    </ListItem>
+                                    <CustomHR />
+                                </List>
+                            )
+                        })}
                     </PaperListAlbums>
                 </CustomGendersWrapper>
             </ManageGendersWrapper>
-        );
+        )
+    }
+};
+
+const mapStateToProps = (state) => {
+    return {
+        genders: state.gender.genders
     }
 }
 
@@ -140,10 +101,11 @@ const mapDispatchToProps = dispatch =>{
     return{
         goToLoginPage: () => dispatch(replace(routes.login)),
         goToAdminPanelPage: () => dispatch(push(routes.adminPanel)),
-        goToCreateGenderPage: () => dispatch(push(routes.createGender))
+        goToCreateGenderPage: () => dispatch(push(routes.createGender)),
+        getGenders: (token) => dispatch(getGenders(token))
     }
   }
   
   
   
-  export default connect (null, mapDispatchToProps) (ManageGenders);
+export default connect (mapStateToProps, mapDispatchToProps) (ManageGenders);

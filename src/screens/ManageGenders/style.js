@@ -95,3 +95,7 @@ export const CustomSVG = styled.img `
         opacity: 100%;
     }
 `
+
+export const CustomHR = styled.hr `
+    opacity: 15%;
+`
