@@ -58,7 +58,7 @@ class ManageGenders extends React.Component {
                 </PaperManageGenders>
 
                 <CustomGendersWrapper>                    
-                    <PaperListAlbums elevation={2}>
+                    <PaperListAlbums elevation={2} style={{maxHeight: '100%', overflow: 'auto'}}>
                         {this.props.genders && this.props.genders.map((gender) => {
                             return (
                                 <List key={gender.id}>

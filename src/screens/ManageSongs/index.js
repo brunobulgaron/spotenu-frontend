@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push, replace } from "connected-react-router";
+import { getSongs } from '../../actions/song';
 import { ManageSongsWrapper, PaperManageSongs, ButtonManageSongs,TypographyManageSongs, CustomMusicNoteIcon, ButtonManageSongsVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon, CustomSongsWrapper, PaperListSongs, CustomTableCell } from './style';
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -14,11 +15,13 @@ import TableRow from "@material-ui/core/TableRow";
 class ManageSongs extends React.Component {
 
     componentDidMount() {
-        const {goToLoginPage} = this.props;
+        const {goToLoginPage, getSongs} = this.props;
         const token = localStorage.getItem("token");
 
         if(token === null){
             goToLoginPage();
+        }else{
+            getSongs();
         };
     };
 
@@ -100,14 +103,21 @@ class ManageSongs extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        songs: state.song.songs
+    }
+}
+
 const mapDispatchToProps = dispatch =>{
     return{
         goToLoginPage: () => dispatch(replace(routes.login)),
         goToDashboardBandPage: () => dispatch(push(routes.dashboardBand)),
-        goToCreateSongPage: () => dispatch(push(routes.createSong))
+        goToCreateSongPage: () => dispatch(push(routes.createSong)),
+        getSongs: (token) => dispatch(getSongs(token))
     }
   }
   
   
   
-  export default connect (null, mapDispatchToProps) (ManageSongs);
+  export default connect (mapStateToProps, mapDispatchToProps) (ManageSongs);

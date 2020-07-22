@@ -4,6 +4,8 @@ import { routes } from "../../screens/Router";
 import { push, replace } from "connected-react-router";
 import { ManageProfileWrapper, PaperManageProfile, TypographyManageProfile, CustomPersonIcon, CustomSVG, CustomSVGWrapper, ButtonManageProfileVoltar, CustomHighlightOffIcon, CustomKeyboardBackspaceIcon, ButtonManageProfileExcluir, TypographyProfileInfo, CustomSpan, CustomModal } from './style';
 
+import { getUserById } from '../../actions/user';
+
 CustomModal.setAppElement('#root');
 
 class ManageProfile extends React.Component {
@@ -15,11 +17,13 @@ class ManageProfile extends React.Component {
     }
 
     componentDidMount() {
-        const {goToLoginPage} = this.props;
+        const {goToLoginPage, getUserById} = this.props;
         const token = localStorage.getItem("token");
 
         if(token === null){
             goToLoginPage();
+        }else{
+            getUserById(token)
         };
     };
 
@@ -47,15 +51,15 @@ class ManageProfile extends React.Component {
                 <PaperManageProfile elevation={2}>
                     <CustomPersonIcon />
                     <TypographyManageProfile variant="h4">Gerenciar Perfil</TypographyManageProfile>
-                    
+
                     <TypographyProfileInfo variant="h6">
-                        <CustomSpan>Nome: </CustomSpan>nome user
+                        <CustomSpan>Nome: </CustomSpan>{this.props.users.name}
                     </TypographyProfileInfo>
 
                     <TypographyProfileInfo variant="h6">
-                        <CustomSpan>E-mail: </CustomSpan>email user
+                        <CustomSpan>E-mail: </CustomSpan>{this.props.users.email}
                     </TypographyProfileInfo>
-                                                            
+
                     <ButtonManageProfileVoltar
                         variant="outlined"
                         color="secondary"
@@ -83,13 +87,20 @@ class ManageProfile extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        users: state.user.users
+    }
+}
+
 const mapDispatchToProps = dispatch =>{
     return{
         goToLoginPage: () => dispatch(replace(routes.login)),
-        goToDashboardBandPage: () => dispatch(push(routes.dashboardBand))
+        goToDashboardBandPage: () => dispatch(push(routes.dashboardBand)),
+        getUserById: (token) => dispatch(getUserById(token))
     }
   }
   
   
   
-  export default connect (null, mapDispatchToProps) (ManageProfile);
+  export default connect (mapStateToProps, mapDispatchToProps) (ManageProfile);

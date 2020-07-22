@@ -18,9 +18,14 @@ class Header extends React.Component {
                 <LogoText variant="h3" onClick={this.props.goToHome}>Spotenu</LogoText>
                 <ButtonWrapper>
                     <ButtonHeader
+                        onClick={this.props.goToDashboardBand}
+                    >
+                        Banda
+                    </ButtonHeader>
+                    <ButtonHeader
                         onClick={this.props.goToAdminPanel}
                     >
-                        Painel
+                        Admin
                     </ButtonHeader>
 
                     {(localStorage.getItem("token") === null) && (
@@ -40,7 +45,8 @@ const mapDispatchToProps = dispatch =>{
     return{
       goToLoginPage: () => dispatch(push(routes.login)),
       goToHome: () => dispatch(push(routes.root)),
-      goToAdminPanel: () => dispatch(push(routes.adminPanel))
+      goToAdminPanel: () => dispatch(push(routes.adminPanel)),
+      goToDashboardBand: () => dispatch(push(routes.dashboardBand))
     }
   }
   

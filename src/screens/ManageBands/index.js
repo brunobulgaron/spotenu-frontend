@@ -46,7 +46,7 @@ class ManageBands extends React.Component {
                 </PaperManageBands>
 
                 <CustomBandsWrapper>                    
-                    <PaperListAlbums elevation={2}>
+                    <PaperListAlbums elevation={2} style={{maxHeight: '100%', overflow: 'auto'}}>
                         {this.props.bands && this.props.bands.map((band) => {
                             return (
                                 <List>

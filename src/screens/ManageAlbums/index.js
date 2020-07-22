@@ -14,16 +14,19 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { getAlbums, getAlbumsByCreatedBy } from "../../actions/album";
 
 
 class ManageAlbums extends React.Component {
 
     componentDidMount() {
-        const {goToLoginPage} = this.props;
+        const {goToLoginPage, getAlbums, getAlbumsByCreatedBy} = this.props;
         const token = localStorage.getItem("token");
 
         if(token === null){
             goToLoginPage();
+        }else{
+            getAlbumsByCreatedBy(token);
         };
     };
 
@@ -54,81 +57,31 @@ class ManageAlbums extends React.Component {
                 </PaperManageAlbums>
 
                 <CustomAlbumsWrapper>
-                    <PaperListAlbums elevation={2}>
-                        <List>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <AlbumIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome do Álbum 1" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <AlbumIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome do Álbum 2" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <AlbumIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome do Álbum 3" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <AlbumIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                
-                                <ListItemText primary="Nome do Álbum 4" />
-                                
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                        </List>
+                    <PaperListAlbums elevation={2} style={{maxHeight: '100%', overflow: 'auto'}}>
+                    {this.props.albums && this.props.albums.map((album) => {
+                        return (
+                            <List key={album.id}>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <AlbumIcon />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    
+                                    <ListItemText primary={album.name} />
+                                    
+                                    <ListItemSecondaryAction>
+                                        <IconButton
+                                            edge="end"
+                                            aria-label="delete"
+                                        >
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                            </List>
+                        )
+                    })}
                     </PaperListAlbums>
                 </CustomAlbumsWrapper>
             </ManageAlbumsWrapper>
@@ -136,14 +89,22 @@ class ManageAlbums extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        albums: state.album.albums
+    }
+}
+
 const mapDispatchToProps = dispatch =>{
     return{
         goToLoginPage: () => dispatch(push(replace.login)),
         goToDashboardBandPage: () => dispatch(push(routes.dashboardBand)),
-        goToCreateAlbumPage: () => dispatch(push(routes.createAlbum))
+        goToCreateAlbumPage: () => dispatch(push(routes.createAlbum)),
+        // getAlbums: (token) => dispatch(getAlbums(token))
+        getAlbumsByCreatedBy: (token) => dispatch(getAlbumsByCreatedBy(token))
     }
   }
   
   
   
-  export default connect (null, mapDispatchToProps) (ManageAlbums);
+  export default connect (mapStateToProps, mapDispatchToProps) (ManageAlbums);
