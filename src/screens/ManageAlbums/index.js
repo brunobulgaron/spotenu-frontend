@@ -14,19 +14,22 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { getAlbums, getAlbumsByCreatedBy } from "../../actions/album";
+
+import { getAlbumsByCreatedBy } from "../../actions/album";
+import { getUserById } from '../../actions/user';
 
 
 class ManageAlbums extends React.Component {
 
     componentDidMount() {
-        const {goToLoginPage, getAlbums, getAlbumsByCreatedBy} = this.props;
+        const {goToLoginPage, getAlbumsByCreatedBy, getUserById} = this.props;
         const token = localStorage.getItem("token");
 
         if(token === null){
             goToLoginPage();
         }else{
             getAlbumsByCreatedBy(token);
+            getUserById(token);
         };
     };
 
@@ -58,6 +61,7 @@ class ManageAlbums extends React.Component {
 
                 <CustomAlbumsWrapper>
                     <PaperListAlbums elevation={2} style={{maxHeight: '100%', overflow: 'auto'}}>
+                        <p style={{ opacity: '60%', marginLeft: '15px', fontSize: '1.2em' }}>Lista de álbuns de {this.props.users.name}</p>
                     {this.props.albums && this.props.albums.map((album) => {
                         return (
                             <List key={album.id}>
@@ -91,7 +95,8 @@ class ManageAlbums extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        albums: state.album.albums
+        albums: state.album.albums,
+        users: state.user.users
     }
 }
 
@@ -100,8 +105,8 @@ const mapDispatchToProps = dispatch =>{
         goToLoginPage: () => dispatch(push(replace.login)),
         goToDashboardBandPage: () => dispatch(push(routes.dashboardBand)),
         goToCreateAlbumPage: () => dispatch(push(routes.createAlbum)),
-        // getAlbums: (token) => dispatch(getAlbums(token))
-        getAlbumsByCreatedBy: (token) => dispatch(getAlbumsByCreatedBy(token))
+        getAlbumsByCreatedBy: (token) => dispatch(getAlbumsByCreatedBy(token)),
+        getUserById: (token) => dispatch(getUserById(token))
     }
   }
   

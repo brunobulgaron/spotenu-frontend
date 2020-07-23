@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push, replace } from "connected-react-router";
-import { getSongs } from '../../actions/song';
+import { getAllSongs } from '../../actions/song';
 import { ManageSongsWrapper, PaperManageSongs, ButtonManageSongs,TypographyManageSongs, CustomMusicNoteIcon, ButtonManageSongsVoltar, CustomAddIcon, CustomKeyboardBackspaceIcon, CustomSongsWrapper, PaperListSongs, CustomTableCell } from './style';
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -15,13 +15,13 @@ import TableRow from "@material-ui/core/TableRow";
 class ManageSongs extends React.Component {
 
     componentDidMount() {
-        const {goToLoginPage, getSongs} = this.props;
+        const {goToLoginPage, getAllSongs} = this.props;
         const token = localStorage.getItem("token");
 
         if(token === null){
             goToLoginPage();
         }else{
-            getSongs();
+            getAllSongs(token);
         };
     };
 
@@ -52,50 +52,29 @@ class ManageSongs extends React.Component {
                 </PaperManageSongs>
                 
                 <CustomSongsWrapper>
-                    <PaperListSongs elevation={2}>
-                    <TableContainer component={PaperListSongs}>
-                        <Table                
-                            size="small"                            
-                        >
-                            <TableHead>
-                                <TableRow>
-                                    <CustomTableCell>Nome</CustomTableCell>
-                                    <CustomTableCell align="center">Álbum</CustomTableCell>
-                                    <CustomTableCell align="center">Artista</CustomTableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell component="th" scope="row">
-                                        Nome da Música
-                                    </TableCell>
-                                    <TableCell align="center">Nome do Álbum</TableCell>
-                                    <TableCell align="center">Nome do Artista</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell component="th" scope="row">
-                                        Nome da Música
-                                    </TableCell>
-                                    <TableCell align="center">Nome do Álbum</TableCell>
-                                    <TableCell align="center">Nome do Artista</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell component="th" scope="row">
-                                        Nome da Música
-                                    </TableCell>
-                                    <TableCell align="center">Nome do Álbum</TableCell>
-                                    <TableCell align="center">Nome do Artista</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell component="th" scope="row">
-                                        Nome da Música
-                                    </TableCell>
-                                    <TableCell align="center">Nome do Álbum</TableCell>
-                                    <TableCell align="center">Nome do Artista</TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                    <PaperListSongs elevation={2} style={{maxHeight: '100%', overflow: 'auto'}}>
+                            <TableContainer component={PaperListSongs}>
+                                <Table                
+                                    size="small"                            
+                                >
+                                    <TableHead>
+                                        <TableRow>
+                                            <CustomTableCell>Catálogo de Músicas - Spotenu</CustomTableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    {this.props.songs && this.props.songs.map((song) => {
+                                        return (
+                                            <TableBody>
+                                                <TableRow>
+                                                    <TableCell component="th" scope="row">
+                                                        {song.name}
+                                                    </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                        )
+                                    })}
+                                </Table>
+                            </TableContainer>
                     </PaperListSongs>
                 </CustomSongsWrapper>
             </ManageSongsWrapper>
@@ -114,7 +93,7 @@ const mapDispatchToProps = dispatch =>{
         goToLoginPage: () => dispatch(replace(routes.login)),
         goToDashboardBandPage: () => dispatch(push(routes.dashboardBand)),
         goToCreateSongPage: () => dispatch(push(routes.createSong)),
-        getSongs: (token) => dispatch(getSongs(token))
+        getAllSongs: (token) => dispatch(getAllSongs(token))
     }
   }
   

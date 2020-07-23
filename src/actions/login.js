@@ -35,7 +35,7 @@ export const signUpUserAdmin = (body) => async (dispatch) => {
         dispatch(push(routes.adminPanel));
 
     }catch(error){        
-        alert(JSON.stringify(error.response.data.error));
+        alert(JSON.stringify(error.response.data.error));        
     };
 };
 

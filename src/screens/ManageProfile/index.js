@@ -60,6 +60,10 @@ class ManageProfile extends React.Component {
                         <CustomSpan>E-mail: </CustomSpan>{this.props.users.email}
                     </TypographyProfileInfo>
 
+                    <TypographyProfileInfo variant="h6">
+                        <CustomSpan>Tipo: </CustomSpan>{this.props.users.type}
+                    </TypographyProfileInfo>
+
                     <ButtonManageProfileVoltar
                         variant="outlined"
                         color="secondary"

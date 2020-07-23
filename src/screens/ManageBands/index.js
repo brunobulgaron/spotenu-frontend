@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
 import { push, replace } from "connected-react-router";
-import { getBands } from '../../actions/band';
+import { getAllUnapprovedBands, approveBand } from '../../actions/band';
 import { ManageBandsWrapper, PaperManageBands, TypographyManageBands, CustomBandsWrapper, ButtonManageBandsVoltar, CustomKeyboardBackspaceIcon, PaperListAlbums, CustomCheck, CustomDelete, CustomStarsIcon } from './style';
 
 // import AlbumIcon from '@material-ui/icons/Album';
@@ -18,15 +18,15 @@ import IconButton from "@material-ui/core/IconButton";
 class ManageBands extends React.Component {
 
     componentDidMount() {
-        const {goToLoginPage, getBands} = this.props;
+        const {goToLoginPage, getAllUnapprovedBands} = this.props;
         const token = localStorage.getItem("token");
 
         if(token === null){
             goToLoginPage();
         }else{
-            getBands(token);
+            getAllUnapprovedBands(token);
         };
-    };
+    };    
 
     render() {
         return (
@@ -47,6 +47,8 @@ class ManageBands extends React.Component {
 
                 <CustomBandsWrapper>                    
                     <PaperListAlbums elevation={2} style={{maxHeight: '100%', overflow: 'auto'}}>
+                        <TypographyManageBands variant="h6">Bandas para aprovar</TypographyManageBands>
+                        <p style={{opacity: '60%', marginLeft: '15px'}}>Clique no ícone verde à direita para aprovar uma banda.</p>
                         {this.props.bands && this.props.bands.map((band) => {
                             return (
                                 <List>
@@ -63,14 +65,9 @@ class ManageBands extends React.Component {
                                             <IconButton
                                                 edge="start"
                                                 aria-label="check"
-                                            >                                        
+                                                onClick={() => this.props.approveBand(band.id)}
+                                            >   
                                                 <CustomCheck />
-                                            </IconButton>
-                                            <IconButton
-                                                edge="end"
-                                                aria-label="delete"
-                                            >                                        
-                                                <CustomDelete />
                                             </IconButton>
                                         </ListItemSecondaryAction>
                                     </ListItem>
@@ -94,7 +91,8 @@ const mapDispatchToProps = dispatch =>{
     return{
         goToLoginPage: () => dispatch(replace(routes.login)),
         goToAdminPanelPage: () => dispatch(push(routes.adminPanel)),
-        getBands: (token) => dispatch(getBands(token))
+        getAllUnapprovedBands: (token) => dispatch(getAllUnapprovedBands(token)),
+        approveBand: (id) => dispatch(approveBand(id))
     }
   }
   

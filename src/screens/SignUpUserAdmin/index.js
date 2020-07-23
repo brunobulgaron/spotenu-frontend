@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../screens/Router";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { signUpUserAdmin } from '../../actions/login';
 import {
     ButtonSignUp,
@@ -20,6 +20,15 @@ class SignUpUserAdmin extends React.Component {
         this.state = {
             signUpUserAdminForm: {}
         };
+    };
+
+    componentDidMount() {
+        const {goToLoginPage} = this.props;
+        const token = localStorage.getItem("token");
+
+        if(token === null){
+            goToLoginPage();
+        }
     };
 
     handleFormSubmit = event => {
@@ -107,6 +116,7 @@ class SignUpUserAdmin extends React.Component {
 
 const mapDispatchToProps = dispatch =>{
     return{
+        goToLoginPage: () => dispatch(replace(routes.login)),
         signUpUserAdmin: (body) => dispatch(signUpUserAdmin(body)),
         goToAdminPanelPage: () => dispatch(push(routes.adminPanel))
     }

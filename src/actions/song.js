@@ -11,7 +11,7 @@ export function setSong(songsFromApi){
     }
 }
 
-export const getSongs = (token) => async (dispatch) =>{
+export const getAllSongs = (token) => async (dispatch) =>{
 
     const response = await axios.get(
         `http://localhost:5000/song/getAllSongs`,{

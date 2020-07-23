@@ -41,9 +41,9 @@ export const createAlbum = (token, body) => async (dispatch) =>{
                 headers:{"authorization": token}
             }
         )        
-        // dispatch(getAlbums(token));
+        dispatch(getAlbums(token));
         dispatch(push(routes.manageAlbums));
-        alert(JSON.stringify((response.data.message)));
+        // alert(JSON.stringify((response.data.message)));
         
     }catch(error){
         alert(JSON.stringify(error.message));
