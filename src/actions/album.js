@@ -2,6 +2,8 @@ import axios from 'axios';
 import { push } from "connected-react-router";
 import { routes } from '../screens/Router';
 
+const baseURL = 'https://27xzpwuldg.execute-api.us-east-1.amazonaws.com/dev/';
+
 export function setAlbum(albumsFromApi){
     return{
         type: 'SET_ALBUM',
@@ -14,7 +16,7 @@ export function setAlbum(albumsFromApi){
 export const getAlbums = (token) => async (dispatch) =>{
 
     const response = await axios.get(
-        `http://localhost:5000/album/getAllAlbums`,{
+        `${baseURL}album/getAllAlbums`,{
             headers:{"authorization": token}
         }    
     );
@@ -25,7 +27,7 @@ export const getAlbums = (token) => async (dispatch) =>{
 export const getAlbumsByCreatedBy = (token) => async (dispatch) =>{
 
     const response = await axios.get(
-        `http://localhost:5000/album/getAlbumsByCreatedBy`,{
+        `${baseURL}album/getAlbumsByCreatedBy`,{
             headers:{"authorization": token}
         }    
     );
@@ -37,13 +39,12 @@ export const createAlbum = (token, body) => async (dispatch) =>{
 
     try{
         const response = await axios.post(
-            `http://localhost:5000/album/createAlbum`,body,{
+            `${baseURL}album/createAlbum`,body,{
                 headers:{"authorization": token}
             }
         )        
         dispatch(getAlbums(token));
         dispatch(push(routes.manageAlbums));
-        // alert(JSON.stringify((response.data.message)));
         
     }catch(error){
         alert(JSON.stringify(error.message));

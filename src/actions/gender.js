@@ -2,6 +2,8 @@ import axios from 'axios';
 import { push } from "connected-react-router";
 import { routes } from '../screens/Router';
 
+const baseURL = 'https://27xzpwuldg.execute-api.us-east-1.amazonaws.com/dev/';
+
 export function setGender(gendersFromApi){
     return{
         type: 'SET_GENDER',
@@ -24,7 +26,7 @@ export function setGenderDetails(genderDetailsFromApi){
 export const getGenders = (token) => async (dispatch) =>{
 
     const response = await axios.get(
-        `http://localhost:5000/genre/allGenres`,{
+        `${baseURL}genre/allGenres`,{
             headers:{"authorization": token}
         }    
     );
@@ -36,7 +38,7 @@ export const createGender = (token, body) => async (dispatch) =>{
 
     try{
         const response = await axios.post(
-            `http://localhost:5000/genre/createGenre`,body,{
+            `${baseURL}genre/createGenre`,body,{
                 headers:{"authorization": token}
             }
         )

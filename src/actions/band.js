@@ -2,6 +2,8 @@ import axios from 'axios';
 import { push } from "connected-react-router";
 import { routes } from '../screens/Router';
 
+const baseURL = 'https://27xzpwuldg.execute-api.us-east-1.amazonaws.com/dev/';
+
 export function setBand(bandsFromApi){
     return{
         type: 'SET_BAND',
@@ -14,7 +16,7 @@ export function setBand(bandsFromApi){
 export const getBands = (token) => async (dispatch) =>{
 
     const response = await axios.get(
-        `http://localhost:5000/band/allBands`,{
+        `${baseURL}band/allBands`,{
             headers:{"authorization": token}
         }    
     );
@@ -25,7 +27,7 @@ export const getBands = (token) => async (dispatch) =>{
 export const getAllUnapprovedBands = (token) => async (dispatch) => {
     
     const response = await axios.get(
-        `http://localhost:5000/band/getAllUnapprovedBands`,{
+        `${baseURL}band/getAllUnapprovedBands`,{
             headers:{"authorization": token}
         }    
     );
@@ -39,7 +41,7 @@ export const approveBand = (id) => async (dispatch) => {
         const token = localStorage.getItem("token");
     
         const response = await axios.post(
-            `http://localhost:5000/band/approve/${id}`, body, {
+            `${baseURL}band/approve/${id}`, body, {
                 headers: {"authorization": token}
             }
         );

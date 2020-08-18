@@ -2,9 +2,11 @@ import axios from 'axios';
 import { push } from "connected-react-router";
 import { routes } from '../screens/Router';
 
+const baseURL = 'https://27xzpwuldg.execute-api.us-east-1.amazonaws.com/dev/';
+
 export const signUpUserFree = (body) => async (dispatch) => {
     try{
-        const response = await axios.post('http://localhost:5000/user/signup', body)
+        const response = await axios.post(`${baseURL}user/signup`, body)
        
         alert("Usuário cadastrado com sucesso!");
         localStorage.setItem("token", response.data.token.token);
@@ -17,7 +19,7 @@ export const signUpUserFree = (body) => async (dispatch) => {
 
 export const signUpUserBand = (body) => async (dispatch) => {
     try{
-        const response = await axios.post('http://localhost:5000/user/signupBand', body)
+        const response = await axios.post(`${baseURL}user/signupBand`, body)
 
         alert(response.data.token.message);
         dispatch(push(routes.dashboardBand));
@@ -29,7 +31,7 @@ export const signUpUserBand = (body) => async (dispatch) => {
 
 export const signUpUserAdmin = (body) => async (dispatch) => {
     try{
-        const response = await axios.post('http://localhost:5000/user/signupAdmin', body)
+        const response = await axios.post(`${baseURL}user/signupAdmin`, body)
         
         alert("Administrador cadastrado com sucesso!");
         dispatch(push(routes.adminPanel));
@@ -41,7 +43,7 @@ export const signUpUserAdmin = (body) => async (dispatch) => {
 
 export const login = (body) => async (dispatch) => {
     try{
-        const response = await axios.post('http://localhost:5000/user/login', body)
+        const response = await axios.post(`${baseURL}user/login`, body)
         
         localStorage.setItem("token", response.data.tokenTeste.resultTeste);
         dispatch(push(routes.dashboardBand));

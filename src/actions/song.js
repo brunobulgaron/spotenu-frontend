@@ -2,6 +2,8 @@ import axios from 'axios';
 import { push } from "connected-react-router";
 import { routes } from '../screens/Router';
 
+const baseURL = 'https://27xzpwuldg.execute-api.us-east-1.amazonaws.com/dev/';
+
 export function setSong(songsFromApi){
     return{
         type: 'SET_SONG',
@@ -14,7 +16,7 @@ export function setSong(songsFromApi){
 export const getAllSongs = (token) => async (dispatch) =>{
 
     const response = await axios.get(
-        `http://localhost:5000/song/getAllSongs`,{
+        `${baseURL}song/getAllSongs`,{
             headers:{"authorization": token}
         }    
     );
@@ -26,7 +28,7 @@ export const createSong = (token, body) => async (dispatch) =>{
 
     try{
         const response = await axios.post(
-            `http://localhost:5000/song/createSong`,body,{
+            `${baseURL}song/createSong`,body,{
                 headers:{"authorization": token}
             }
         )        
