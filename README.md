@@ -7,7 +7,7 @@ Full-Stack app inspired on Spotify.
 
 ## Stack :computer:
 Front-End: ReactJS, Material UI, Styled Components  
-Back-End: NodeJS, Express, MySQL, Knex, bcrypt, uuid
+Back-End: NodeJS, Express, MySQL, Knex, Bcrypt, Uuid, Dotenv, Moment
 
 ### Features :rocket:
 
