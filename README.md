@@ -16,6 +16,7 @@ Back-End: NodeJS, Express, MySQL, Knex, bcrypt, uuid
 - [X] Login
 - [X] Band Dashboard
 - [X] Admin Dashboard
+- [x] Approve/Disapprove Bands
 - [X] Create and List Albums
 - [X] Create and List Genres
 - [x] List songs
