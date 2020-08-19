@@ -1,21 +1,24 @@
 # Spotenu
 
-[Deploy](https://spotenubruno.web.app/)
+[Live Demo](https://spotenubruno.web.app/)
 
 ## About
-Final project at Labenu.
+Full-Stack app inspired on Spotify.
 
 ## Stack :computer:
-Front-End: HTML, CSS, JavaScript, NodeJS, ReactJS, Material UI.
+Front-End: HTML, CSS, JavaScript, ReactJS, Material UI.
+Back-End: NodeJS, Express, MySQL, Knex, bcrypt, uuid
 
 ### Features :rocket:
 
 - [X] Create Account
 - [X] Login
-- [X] Feed Page
-- [X] Comments
-- [X] Vote on posts
-- [X] Validation
+- [X] Band Dashboard
+- [X] Admin Dashboard
+- [X] Create and List Albums
+- [X] Create and List Genres
+- [x] List songs
+- [x] Basic Profile
 
 ## Status :heavy_check_mark:
 All done
