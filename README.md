@@ -11,7 +11,8 @@ Back-End: NodeJS, Express, MySQL, Knex, bcrypt, uuid
 
 ### Features :rocket:
 
-- [X] Create Account
+- [X] Create Band Account
+- [x] Create Listener Account
 - [X] Login
 - [X] Band Dashboard
 - [X] Admin Dashboard
